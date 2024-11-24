@@ -1,6 +1,13 @@
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
 
 const SocialLogin = () => {
+  const { googleLogIn } = useAuth();
+
+  const handleGoogleLogIn = () => {
+    googleLogIn().then((result) => console.log(result));
+  };
+
   return (
     <div>
       <p className="font-semibold">Or sign in with</p>
