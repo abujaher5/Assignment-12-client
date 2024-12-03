@@ -2,7 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+
+import districtData from "../../../public/district.json";
+import upazilaData from "../../../public/upazilas.json";
 const Register = () => {
+  const district = districtData;
+  const upazilas = upazilaData;
   const { createUser } = useAuth();
   const navigate = useNavigate();
 
@@ -14,7 +19,13 @@ const Register = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
         navigate("/");
+
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+        };
       })
+
       .catch((error) => console.log(error));
   };
   return (
@@ -70,6 +81,7 @@ const Register = () => {
                   <option>O-</option>
                 </select>
               </div>
+
               <div className="form-control">
                 <label className="label">District</label>
                 <select
@@ -80,11 +92,13 @@ const Register = () => {
                   <option disabled selected>
                     Select Your District
                   </option>
-                  <option>Dhaka</option>
-                  <option>Chittagong</option>
-                  <option>Rajshahi</option>
+
+                  {district.map((dis) => (
+                    <option key={dis.id}>{dis.name}</option>
+                  ))}
                 </select>
               </div>
+
               <div className="form-control">
                 <label className="label">Upazila</label>
                 <select
@@ -95,9 +109,9 @@ const Register = () => {
                   <option disabled selected>
                     Select Your Upazila
                   </option>
-                  <option>Gulshan</option>
-                  <option>Bonani</option>
-                  <option>Uttara</option>
+                  {upazilas.map((upazila) => (
+                    <option>{upazila.name}</option>
+                  ))}
                 </select>
               </div>
               <div className="form-control">
