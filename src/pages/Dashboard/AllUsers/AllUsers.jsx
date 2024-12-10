@@ -1,57 +1,66 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
 const AllUsers = () => {
+  const axiosSecure = useAxiosSecure();
+
+  const { data: users = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
+  });
+  console.log(users);
   return (
-    <div>
-      <div className="flex users-center justify-start ml-5 mt-10">
-        <h2 className="text-xl font-semibold">Total users: {users.length}</h2>
+    <div className="overflow-x-auto shadow-xl">
+      <div>
+        <h2 className="text-3xl my-4 text-black text-center">
+          Welcome To Famous Diagnostic Center
+        </h2>
+        <h2 className="text-3xl my-4 text-black text-center">
+          Total Users : {users.length}
+        </h2>
       </div>
-
-      <div className="overflow-x-auto shadow-xl rounded-t-xl mt-4">
-        <table className="table">
-          {/* head */}
-          <thead className="bg-[#D1A054] ">
-            <tr>
-              <th>#</th>
-
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Action</th>
+      <table className="table">
+        {/* head */}
+        <thead>
+          <tr>
+            <th>User Photo</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th> Status</th>
+            <th>Role</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody className="text-black">
+          {/* table row  */}
+          {users.map((user, idx) => (
+            <tr key={user._id}>
+              <td>
+                <div className="flex items-center gap-3">
+                  <div className="avatar">
+                    <div className="mask mask-squircle h-12 w-12">
+                      <img
+                        src={user.photoURL}
+                        alt="Avatar Tailwind CSS Component"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>{user.status}</td>
+              <td>{user.role}</td>
+              <td>
+                <button className="btn btn-ghost btn-xs">Details</button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {/* row */}
-
-            {users.map((user, idx) => (
-              <tr key={user._id}>
-                <th>{idx + 1}</th>
-
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
-                  {user.role === "admin" ? (
-                    "Admin"
-                  ) : (
-                    <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-lg bg-orange-500"
-                    >
-                      <FaUsers className="text-white text-2xl"></FaUsers>
-                    </button>
-                  )}
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleDelete(user)}
-                    className="btn btn-ghost bg-red-600"
-                  >
-                    <AiFillDelete className="text-white text-2xl" />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

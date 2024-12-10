@@ -27,14 +27,15 @@ const Navbar = () => {
         <Link to="/allTests">All Tests</Link>
       </li>
       <li>
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard/allUsers">Dashboard</Link>
       </li>
     </>
   );
+
   return (
-    <div>
-      <div className="navbar bg-base-100">
-        <div className="navbar-start">
+    <div className="maw-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto flex justify-between bg-base-100">
+        <div className="">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -61,31 +62,32 @@ const Navbar = () => {
           </div>
           <a className="btn btn-ghost text-xl">All Test</a>
         </div>
+
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
-        <div className="navbar-end">
-          {user ? (
-            <>
-              <li className="menu menu-horizontal px-1">
-                <button onClick={handleLogOut}>Log Out</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className="menu menu-horizontal px-1">
-                <Link to="/login">Login</Link>
-              </li>
-            </>
-          )}
-          <div className="avatar">
-            <div className="w-12 rounded-full border-2">
-              <img
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                alt="user image"
-              />
+
+        <div className="">
+          <ul className="menu menu-horizontal px-1">
+            {user ? (
+              <>
+                <li className="menu menu-horizontal px-1">
+                  <button onClick={handleLogOut}>Log Out</button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="menu menu-horizontal px-1">
+                  <Link to="/login">Login</Link>
+                </li>
+              </>
+            )}
+            <div className="avatar">
+              <div className="w-12 rounded-full border-2">
+                <img src={user?.photoURL} alt={user?.displayName} />
+              </div>
             </div>
-          </div>
+          </ul>
         </div>
       </div>
     </div>

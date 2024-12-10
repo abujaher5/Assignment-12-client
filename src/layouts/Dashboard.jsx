@@ -1,10 +1,22 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Dashboard = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const { data: users = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
+  });
+  console.log(users);
+
   return (
-    <div className="flex gap-2 uppercase text-white">
+    <div className="flex gap-2  text-white">
       {/*  Side bar */}
       <div className="w-64  min-h-full bg-sky-600">
         <div className="text-center">
@@ -20,19 +32,16 @@ const Dashboard = () => {
                 <NavLink to="/dashboard/adminHome">Admin Home</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/allTest">All Test</NavLink>
+                <NavLink to="/dashboard/allUsers">All Users</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/reservation">Reservation</NavLink>
+                <NavLink to="/dashboard/addATest">Add A Test</NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/addBanner">Add Banner</NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/allBanners">All Banners</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/users">All Users</NavLink>
               </li>
             </>
           ) : (
@@ -64,16 +73,7 @@ const Dashboard = () => {
           {/*  common nav links for user and admin  */}
 
           <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/menu">Menu</NavLink>
-          </li>
-          <li>
-            <NavLink to="/">Shop</NavLink>
-          </li>
-          <li>
-            <NavLink to="/">Contact</NavLink>
+            <NavLink to="/"> Bact To Home</NavLink>
           </li>
         </ul>
       </div>

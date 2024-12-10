@@ -4,7 +4,9 @@ const NoticeRelated = () => {
   return (
     <div className="flex justify-around gap-10 my-10">
       <div>
-        <h2>Famous Diagnostic</h2>
+        <h2 className="text-4xl text-center p-2 font-bold">
+          Famous <br /> Diagnostic
+        </h2>
       </div>
       <div className="flex flex-col space-y-2">
         <h2 className="text-xl font-semibold text-red-600">Hotline</h2>

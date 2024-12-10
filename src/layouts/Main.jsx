@@ -8,9 +8,11 @@ const Main = () => {
     <div>
       <NoticeRelated></NoticeRelated>
       <Navbar></Navbar>
-      <div className="min-h-[calc(100vh-306px)]">
+
+      <div className="min-h-[calc(100vh-306px)] mx-auto">
         <Outlet></Outlet>
       </div>
+
       <Footer></Footer>
     </div>
   );

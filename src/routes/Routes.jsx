@@ -8,6 +8,8 @@ import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
 import AllTests from "../pages/AllTests/AllTests";
 import TestDetails from "../pages/AllTests/TestDetails";
 import OurService from "../pages/OurService/OurService";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AddTests from "../pages/Dashboard/AddTests/AddTests";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +51,14 @@ export const router = createBrowserRouter([
       {
         path: "userProfile",
         element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "addATest",
+        element: <AddTests></AddTests>,
       },
     ],
   },

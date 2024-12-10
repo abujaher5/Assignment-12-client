@@ -5,31 +5,75 @@ import useAuth from "../../hooks/useAuth";
 
 import districtData from "../../../public/district.json";
 import upazilaData from "../../../public/upazilas.json";
+import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+
+const image_hosting_key = import.meta.env.VITE_image_hosting_key;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const district = districtData;
+
   const upazilas = upazilaData;
+
   const { createUser } = useAuth();
   const navigate = useNavigate();
 
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    // formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    // // img bb to  send avatar to data base
+    // const imageFile = { image: data.image[0] };
+    // const res = await axiosPublic.post(image_hosting_api, imageFile, {
+    //   headers: {
+    //     "content-type": "multipart/form-data",
+    //   },
+    // });
+    // if (res.data.success) {
+    //   const image = res.data.data.display_url;
+    // }
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        navigate("/");
-
         const userInfo = {
           name: data.name,
           email: data.email,
+          status: "Active",
+          role: "Admin",
+          // avatar: res.data.data.display_url,
         };
+        console.log(userInfo);
+        axiosPublic.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            console.log("user added to the database");
+            // reset();
+            Swal.fire({
+              position: "top-left",
+              icon: "success",
+              title: "User Profile Update Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/");
+          }
+        });
       })
 
       .catch((error) => console.log(error));
   };
   return (
     <div>
+      <Helmet>
+        <title>Famous Diagnostic | Register</title>
+      </Helmet>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col ">
           <h1 className=" text-5xl font-bold">Please Register</h1>
