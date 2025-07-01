@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -9,6 +10,13 @@ const Navbar = () => {
       .then(() => {})
       .catch((error) => console.log(error));
   };
+
+  // dropdown toggle
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDropdown = () => {
+    setIsOpen((close) => !close);
+  };
+
   const navLinks = (
     <>
       <li>
@@ -33,11 +41,16 @@ const Navbar = () => {
   );
 
   return (
-    <div className="maw-w-7xl mx-auto">
-      <div className="max-w-7xl mx-auto flex justify-between bg-base-100">
+    <div className="maw-w-7xl mx-auto ">
+      <div className="max-w-7xl mx-auto flex justify-between bg-blue-500 ">
         <div className="">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              onClick={toggleDropdown}
+              className="btn btn-ghost lg:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -53,18 +66,21 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >
-              {navLinks}
-            </ul>
+            {isOpen && (
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow  "
+              >
+                {navLinks}
+              </ul>
+            )}
           </div>
-          <a className="btn btn-ghost text-xl">All Test</a>
         </div>
 
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+        <div className="navbar-center hidden lg:flex ">
+          <ul className="menu menu-horizontal text-xl px-1 font-semibold text-white ">
+            {navLinks}
+          </ul>
         </div>
 
         <div className="">

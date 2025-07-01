@@ -5,7 +5,7 @@ import NoticeRelated from "../shared/NoticeRelated/NoticeRelated";
 
 const Main = () => {
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <NoticeRelated></NoticeRelated>
       <Navbar></Navbar>
 
