@@ -10,6 +10,7 @@ import TestDetails from "../pages/AllTests/TestDetails";
 import OurService from "../pages/OurService/OurService";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddTests from "../pages/Dashboard/AddTests/AddTests";
+import ContactUs from "../pages/Home/Contact/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "/testDetails",
         element: <TestDetails></TestDetails>,
+      },
+      {
+        path: "/contactUs",
+        element: <ContactUs></ContactUs>,
       },
     ],
   },
