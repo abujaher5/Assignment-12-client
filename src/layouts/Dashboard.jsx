@@ -18,7 +18,7 @@ const Dashboard = () => {
   return (
     <div className="flex gap-2  text-white">
       {/*  Side bar */}
-      <div className="w-64  min-h-full bg-sky-600">
+      <div className="w-64  h-screen bg-sky-600">
         <div className="text-center">
           <h2 className="text-3xl font-bold">Famous </h2>
           <h3 className="text-xl tracking-[.4rem] font-semibold ">
@@ -80,7 +80,7 @@ const Dashboard = () => {
 
       {/*  Dashboard content */}
 
-      <div className="flex-1 p-8">
+      <div className="flex-1 bg-gray-400 dark:bg-white p-8">
         <Outlet></Outlet>
       </div>
     </div>

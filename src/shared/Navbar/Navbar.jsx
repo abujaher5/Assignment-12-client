@@ -34,9 +34,13 @@ const Navbar = () => {
       <li>
         <Link to="/allTests">All Tests</Link>
       </li>
-      <li>
-        <Link to="/dashboard/allUsers">Dashboard</Link>
-      </li>
+      {user ? (
+        <li>
+          <Link to="/dashboard/allUsers">Dashboard</Link>
+        </li>
+      ) : (
+        <></>
+      )}
     </>
   );
 

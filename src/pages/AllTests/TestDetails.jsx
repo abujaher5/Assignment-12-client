@@ -1,4 +1,4 @@
-const TestDetails = () => {
+const TestDetails = ({ tests }) => {
   return (
     <div>
       <div className="card card-side bg-base-100 shadow-xl">
