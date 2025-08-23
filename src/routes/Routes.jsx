@@ -11,6 +11,7 @@ import OurService from "../pages/OurService/OurService";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddTests from "../pages/Dashboard/AddTests/AddTests";
 import ContactUs from "../pages/Home/Contact/ContactUs";
+import UserHome from "../pages/Dashboard/UsersComponents/UserHome";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "addATest",
         element: <AddTests></AddTests>,
+      },
+      {
+        path: "userHome",
+        element: <UserHome />,
       },
     ],
   },

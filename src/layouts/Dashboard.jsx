@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Dashboard = () => {
+  const isAdmin = false;
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { data: users = [] } = useQuery({
@@ -26,7 +27,7 @@ const Dashboard = () => {
           </h3>
         </div>
         <ul className="menu p-4">
-          {user ? (
+          {user && isAdmin ? (
             <>
               <li>
                 <NavLink to="/dashboard/adminHome">Admin Home</NavLink>
