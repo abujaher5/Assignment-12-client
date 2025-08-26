@@ -3,7 +3,7 @@ import { FaAmbulance } from "react-icons/fa";
 const OurService = () => {
   return (
     <div className="flex flex-col  lg:flex lg:flex-row gap-5 mt-20">
-      <div className="flex-1 text-center lg:text-start ">
+      <div className="flex-1 text-center lg:text-start lg:ml-4 ">
         <h2 className="text-4xl font-bold my-4 ">Our Services</h2>
         <p className="text-white text-lg font-semibold">
           We provide accurate and affordable diagnostic tests with fast

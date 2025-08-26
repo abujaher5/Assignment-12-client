@@ -1,11 +1,15 @@
 const Testimonial = () => {
   return (
-    <div className="mt-20 shadow-xl">
+    <div className="mt-20 shadow-xl text-center">
       <section className="my-8 dark:bg-gray-100 dark:text-gray-800">
         <div className=" flex flex-col items-center mx-auto mb-12 md:p-10 md:px-12">
           <h1 className="p-4 text-4xl font-semibold leading-none text-center">
-            What our customers are saying about us
+            What Our Patients Says
           </h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit hic
+            nulla atque, inventore odit minus.fkjjkj fjslkfj .
+          </p>
         </div>
         <div className=" flex flex-col items-center justify-center mx-auto lg:flex-row lg:flex-wrap lg:justify-evenly lg:px-10">
           <div className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
