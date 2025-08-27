@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Dashboard = () => {
-  const isAdmin = false;
+  const isAdmin = true;
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { data: users = [] } = useQuery({

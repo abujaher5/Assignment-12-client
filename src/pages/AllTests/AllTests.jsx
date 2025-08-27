@@ -12,9 +12,9 @@ const AllTests = () => {
       return res.data;
     },
   });
-  console.log(tests);
+
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10">
       {tests.map((item) => (
         <div className="card glass w-96" key={item._id}>
           <figure>

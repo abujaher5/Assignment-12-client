@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 const image_hosting_key = import.meta.env.VITE_image_hosting_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
@@ -9,6 +10,7 @@ const AddTests = () => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
   const onSubmit = async (data) => {
     console.log(data);
 
@@ -35,7 +37,8 @@ const AddTests = () => {
 
       if (testRes.data.insertedId) {
         // show success popup
-        // reset();
+
+        reset();
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -43,6 +46,7 @@ const AddTests = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/allTests");
       }
     }
   };
@@ -53,72 +57,91 @@ const AddTests = () => {
         Add a Test
       </h2>
 
-      <div className="  mt-6 bg-green-300 p-10 rounded-xl shadow-lg text-black">
+      <div className="  mt-6 bg-cyan-700 p-10 rounded-xl shadow-lg text-white ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text">Test Name*</span>
+              <span className="label-text text-white ">Test Name*</span>
             </label>
             <input
               type="text"
               placeholder="Test Name"
               {...register("name", { required: true })}
-              className="input input-bordered w-full "
+              className="input input-bordered
+              text-black
+              placeholder-white
+              md:placeholder-black lg:placeholder-black
+              focus:bg-white
+              
+      
+              w-full "
             />
           </div>
 
           <div className="flex gap-6">
             <div className="form-control w-full my-6">
               <label className="label">
-                <span className="label-text">Date*</span>
+                <span className="label-text text-white">Date*</span>
               </label>
               <input
                 type="date"
                 required
                 placeholder="Date"
                 {...register("date", { required: true })}
-                className="input input-bordered w-full "
+                className="input input-bordered
+         text-black
+            
+              focus:bg-white w-full "
               />
             </div>
 
             <div className="form-control w-full my-6">
               <label className="label">
-                <span className="label-text">Price*</span>
+                <span className="label-text text-white">Price*</span>
               </label>
               <input
                 type="number"
                 required
                 placeholder="Price"
                 {...register("price", { required: true })}
-                className="input input-bordered w-full "
+                className="input input-bordered
+                text-black
+              placeholder-white
+              md:placeholder-black lg:placeholder-black
+              focus:bg-white w-full "
               />
             </div>
           </div>
 
           <div className="form-control">
             <div className="label">
-              <span className="label-text">Test Details*</span>
+              <span className="label-text text-white">Test Details*</span>
             </div>
             <textarea
               {...register("details")}
-              className="textarea textarea-bordered h-24"
+              className="textarea textarea-bordered h-24
+              text-black
+              placeholder-white
+              md:placeholder-black lg:placeholder-black
+              focus:bg-white
+              "
               placeholder="Test Details"
             ></textarea>
           </div>
           <div className="form-control w-full max-w-xs my-6">
             <div className="label">
-              <span className="label-text">Test Image*</span>
+              <span className="label-text text-white">Test Image*</span>
             </div>
 
             <input
               {...register("image", { required: true })}
               type="file"
-              className="file-input file-input-bordered w-full max-w-xs"
+              className="file-input text-black file-input-bordered w-full max-w-xs"
             />
           </div>
           {/* <input className="btn btn-outline" type="submit" value={"Add Item"} /> */}
 
-          <button className="btn  w-full">Add Test</button>
+          <button className="btn bg-blue-500  w-full">Add Test</button>
         </form>
       </div>
     </div>

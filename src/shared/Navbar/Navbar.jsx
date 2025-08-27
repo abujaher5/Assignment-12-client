@@ -73,7 +73,7 @@ const Navbar = () => {
             {isOpen && (
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow  "
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow uppercase  "
               >
                 {navLinks}
               </ul>
@@ -82,17 +82,19 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-center hidden lg:flex ">
-          <ul className="menu menu-horizontal text-xl px-1 font-semibold text-white ">
+          <ul className="menu menu-horizontal text-xl px-1 font-semibold text-white uppercase  ">
             {navLinks}
           </ul>
         </div>
 
         <div className="">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 uppercase">
             {user ? (
               <>
-                <li className="menu menu-horizontal px-1">
-                  <button onClick={handleLogOut}>Log Out</button>
+                <li className="menu   menu-horizontal px-1">
+                  <button className="uppercase" onClick={handleLogOut}>
+                    Log Out
+                  </button>
                 </li>
               </>
             ) : (

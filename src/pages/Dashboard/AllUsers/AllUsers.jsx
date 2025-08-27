@@ -11,9 +11,9 @@ const AllUsers = () => {
       return res.data;
     },
   });
-  console.log(users);
+  // console.log(users);
   return (
-    <div className="overflow-x-auto shadow-xl">
+    <div className="overflow-x-auto shadow-xl bg-slate-200 rounded-md">
       <div>
         <h2 className="text-3xl my-4 text-black text-center">
           Welcome To Famous Diagnostic Center
