@@ -12,6 +12,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddTests from "../pages/Dashboard/AddTests/AddTests";
 import ContactUs from "../pages/Home/Contact/ContactUs";
 import UserHome from "../pages/Dashboard/UsersComponents/UserHome";
+import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: "addATest",
         element: <AddTests></AddTests>,
+      },
+      {
+        path: "addADoctor",
+        element: <AddDoctor />,
       },
       {
         path: "userHome",

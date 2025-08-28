@@ -39,6 +39,9 @@ const Dashboard = () => {
                 <NavLink to="/dashboard/addATest">Add A Test</NavLink>
               </li>
               <li>
+                <NavLink to="/dashboard/addADoctor">Add A Doctor</NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/addBanner">Add Banner</NavLink>
               </li>
               <li>
