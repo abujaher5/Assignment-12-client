@@ -12,8 +12,7 @@ const AddDoctor = () => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const onSubmit = async (data) => {
-    console.log(data);
-
+    // console.log(data);
     // image upload to imgbb and then get an url
 
     const imageFile = { image: data.image[0] };
@@ -34,7 +33,7 @@ const AddDoctor = () => {
         image: res.data.data.display_url,
       };
       const doctorRes = await axiosSecure.post("/doctors", doctorInfo);
-      console.log(doctorRes.data);
+      //   console.log(doctorRes.data);
 
       if (doctorRes.data.insertedId) {
         // show success popup

@@ -14,7 +14,7 @@ const Dashboard = () => {
       return res.data;
     },
   });
-  console.log(users);
+  // console.log(users);
 
   return (
     <div className="flex gap-2  text-white">
@@ -46,6 +46,9 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/allBanners">All Banners</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manageDoctors">Manage Doctors</NavLink>
               </li>
             </>
           ) : (

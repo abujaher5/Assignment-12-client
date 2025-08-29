@@ -13,6 +13,7 @@ import AddTests from "../pages/Dashboard/AddTests/AddTests";
 import ContactUs from "../pages/Home/Contact/ContactUs";
 import UserHome from "../pages/Dashboard/UsersComponents/UserHome";
 import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
+import ManageDoctor from "../pages/Dashboard/ManageDoctor/ManageDoctor";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
       {
         path: "addADoctor",
         element: <AddDoctor />,
+      },
+      {
+        path: "manageDoctors",
+        element: <ManageDoctor />,
       },
       {
         path: "userHome",
