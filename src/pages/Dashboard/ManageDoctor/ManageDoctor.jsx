@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ManageDoctor = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: doctors = [] } = useQuery({
+  const { data: doctors = [], refetch } = useQuery({
     queryKey: ["doctors"],
     queryFn: async () => {
       const res = await axiosSecure.get("/doctors");
@@ -12,12 +14,38 @@ const ManageDoctor = () => {
     },
   });
   console.log(doctors);
+
+  const handleDelete = (doctor) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/doctors/${doctor._id}`);
+        console.log(res.data);
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: `${doctor.name} has been deleted.`,
+            icon: "success",
+            timer: 1500,
+          });
+        }
+      }
+    });
+  };
   return (
-    <div className="text-4xl font-bold text-center uppercase">
+    <div className="text-4xl font-bold text-center uppercase max-w-6xl ">
       <h2>Manage Doctors</h2>
 
-      <div>
-        <table className="table">
+      <div className=" overflow-auto">
+        <table className="table ">
           {/* head */}
           <thead>
             <tr>
@@ -49,16 +77,21 @@ const ManageDoctor = () => {
                 <td>{doctor.location}</td>
                 <td>{doctor.availableOn} </td>
                 <td>
-                  <button className="btn btn-ghost hover:bg-green-300">
-                    <FaEdit
-                      size={30}
-                      color="green
+                  <Link to={`/dashboard/updateDoctorsInfo/${doctor._id}`}>
+                    <button className="btn btn-ghost hover:bg-green-300">
+                      <FaEdit
+                        size={30}
+                        color="green
                     "
-                    />
-                  </button>
+                      />
+                    </button>
+                  </Link>
                 </td>
                 <td>
-                  <button className="btn btn-ghost hover:bg-red-300 ">
+                  <button
+                    onClick={() => handleDelete(doctor)}
+                    className="btn btn-ghost hover:bg-red-300 "
+                  >
                     <FaTrash size={30} color="red" />
                   </button>
                 </td>

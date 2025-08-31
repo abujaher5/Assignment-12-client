@@ -39,9 +39,9 @@ const OurDoctor = () => {
             <div className="card-body items-start ">
               <h2 className="card-title">{doctor.name}</h2>
               <p>{doctor.specialize}</p>
-              <p>
-                <Rating style={{ maxWidth: 150 }} value={rating} readOnly />
-              </p>
+
+              <Rating style={{ maxWidth: 150 }} value={rating} readOnly />
+
               <p className="flex items-center justify-center gap-4">
                 <CiLocationOn /> Agrabad, Chittagong, Bangladesh
               </p>

@@ -149,6 +149,7 @@ const Dashboard = () => {
             //     </li>
             //   </>
             // )
+
             navLinks
           }
 
@@ -199,7 +200,7 @@ const Dashboard = () => {
 
       {/*  Dashboard content */}
 
-      <div className="flex-1 bg-gray-400 dark:bg-white p-8">
+      <div className="flex-1 bg-gray-400 dark:bg-white p-8  ">
         <Outlet></Outlet>
       </div>
     </div>

@@ -14,6 +14,7 @@ import ContactUs from "../pages/Home/Contact/ContactUs";
 import UserHome from "../pages/Dashboard/UsersComponents/UserHome";
 import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
 import ManageDoctor from "../pages/Dashboard/ManageDoctor/ManageDoctor";
+import UpdateDoctorsInfo from "../pages/Dashboard/AddDoctor/UpdateDoctorsInfo/UpdateDoctorsInfo";
 
 export const router = createBrowserRouter([
   {
@@ -79,6 +80,12 @@ export const router = createBrowserRouter([
       {
         path: "userHome",
         element: <UserHome />,
+      },
+      {
+        path: "updateDoctorsInfo/:id",
+        element: <UpdateDoctorsInfo />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/doctors/${params.id}`),
       },
     ],
   },
