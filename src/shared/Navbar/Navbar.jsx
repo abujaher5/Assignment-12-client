@@ -53,7 +53,7 @@ const Navbar = () => {
               tabIndex={0}
               role="button"
               onClick={toggleDropdown}
-              className="btn btn-ghost lg:hidden"
+              className="btn btn-ghost lg:hidden z-10"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ const Navbar = () => {
             {isOpen && (
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow uppercase  "
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow uppercase  "
               >
                 {navLinks}
               </ul>

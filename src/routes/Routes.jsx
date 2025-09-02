@@ -15,6 +15,7 @@ import UserHome from "../pages/Dashboard/UsersComponents/UserHome";
 import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
 import ManageDoctor from "../pages/Dashboard/ManageDoctor/ManageDoctor";
 import UpdateDoctorsInfo from "../pages/Dashboard/AddDoctor/UpdateDoctorsInfo/UpdateDoctorsInfo";
+import AddBanner from "../pages/Dashboard/AddBanner/AddBanner";
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
       {
         path: "addADoctor",
         element: <AddDoctor />,
+      },
+      {
+        path: "addBanner",
+        element: <AddBanner />,
       },
       {
         path: "manageDoctors",

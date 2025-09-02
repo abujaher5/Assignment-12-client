@@ -90,7 +90,7 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="flex flex-col md:flex-row lg:flex-row h-screen lg:gap-2  text-white">
+    <div className="flex flex-col md:flex-row lg:flex-row h-screen   text-white">
       {/*  Side bar */}
       <div className="w-64 h-screen bg-sky-600 hidden md:block lg:block ">
         <div className="text-center">
@@ -190,7 +190,7 @@ const Dashboard = () => {
           {isOpen && (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow uppercase  "
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow uppercase  "
             >
               {navLinks}
             </ul>
@@ -200,7 +200,7 @@ const Dashboard = () => {
 
       {/*  Dashboard content */}
 
-      <div className="flex-1 bg-gray-400 dark:bg-white p-8  ">
+      <div className="flex-1 overflow-auto bg-gray-400 dark:bg-white p-8  ">
         <Outlet></Outlet>
       </div>
     </div>

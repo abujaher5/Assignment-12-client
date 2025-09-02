@@ -53,7 +53,7 @@ const AddTests = () => {
   //   console.log("with image url", res.data);
   return (
     <div>
-      <h2 className="text-blue-600 text-center text-3xl font-bold">
+      <h2 className="text-blue-600 text-center text-3xl font-bold uppercase">
         Add a Test
       </h2>
 
@@ -69,7 +69,7 @@ const AddTests = () => {
               {...register("name", { required: true })}
               className="input input-bordered
               text-black
-              placeholder-white
+              placeholder-black placeholder-opacity-40
               md:placeholder-black lg:placeholder-black
               focus:bg-white
               
@@ -78,8 +78,8 @@ const AddTests = () => {
             />
           </div>
 
-          <div className="flex gap-6">
-            <div className="form-control w-full my-6">
+          <div className="flex flex-col lg:flex-row lg:gap-6">
+            <div className="form-control w-full ">
               <label className="label">
                 <span className="label-text text-white">Date*</span>
               </label>
@@ -90,12 +90,14 @@ const AddTests = () => {
                 {...register("date", { required: true })}
                 className="input input-bordered
          text-black
+         placeholder-opacity-40
+         text-opacity-40
             
               focus:bg-white w-full "
               />
             </div>
 
-            <div className="form-control w-full my-6">
+            <div className="form-control w-full">
               <label className="label">
                 <span className="label-text text-white">Price*</span>
               </label>
@@ -106,7 +108,7 @@ const AddTests = () => {
                 {...register("price", { required: true })}
                 className="input input-bordered
                 text-black
-              placeholder-white
+              placeholder-black placeholder-opacity-40
               md:placeholder-black lg:placeholder-black
               focus:bg-white w-full "
               />
@@ -119,16 +121,16 @@ const AddTests = () => {
             </div>
             <textarea
               {...register("details")}
-              className="textarea textarea-bordered h-24
+              className="textarea textarea-bordered h-16 lg:h-24
               text-black
-              placeholder-white
+              placeholder-black placeholder-opacity-40
               md:placeholder-black lg:placeholder-black
               focus:bg-white
               "
               placeholder="Test Details"
             ></textarea>
           </div>
-          <div className="form-control w-full max-w-xs my-6">
+          <div className="form-control w-full max-w-xs ">
             <div className="label">
               <span className="label-text text-white">Test Image*</span>
             </div>
@@ -141,7 +143,9 @@ const AddTests = () => {
           </div>
           {/* <input className="btn btn-outline" type="submit" value={"Add Item"} /> */}
 
-          <button className="btn bg-blue-500  w-full">Add Test</button>
+          <button className="btn my-6 bg-blue-500  w-full uppercase">
+            Add Test
+          </button>
         </form>
       </div>
     </div>
