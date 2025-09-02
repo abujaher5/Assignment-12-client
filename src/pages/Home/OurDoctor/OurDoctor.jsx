@@ -53,7 +53,11 @@ const OurDoctor = () => {
               </p>
             </div>
             <div className="flex justify-center mb-4">
-              <button className="btn btn-wide text-white border-cyan-500 hover:bg-cyan-500">
+              <button
+                className="btn btn-wide text-black 
+              hover:text-white
+              border-cyan-500 hover:bg-cyan-500"
+              >
                 View Profile
               </button>
             </div>
