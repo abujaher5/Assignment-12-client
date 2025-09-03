@@ -34,19 +34,20 @@ const Dashboard = () => {
             <NavLink to="/dashboard/allUsers">All Users</NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/addATest">Add A Test</NavLink>
+            <NavLink to="/dashboard/addATest">Add Test</NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/addADoctor">Add A Doctor</NavLink>
+            <NavLink to="/dashboard/addADoctor">Add Doctor</NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/addBanner">Add Banner</NavLink>
           </li>
-          <li>
-            <NavLink to="/dashboard/allBanners">All Banners</NavLink>
-          </li>
+
           <li>
             <NavLink to="/dashboard/manageDoctors">Manage Doctors</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/manageBanners">Manage Banners</NavLink>
           </li>
           <div className="divider"></div>
 
@@ -90,7 +91,7 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="flex flex-col md:flex-row lg:flex-row h-screen   text-white">
+    <div className="flex flex-col md:flex-row lg:flex-row h-screen text-white">
       {/*  Side bar */}
       <div className="w-64 h-screen bg-sky-600 hidden md:block lg:block ">
         <div className="text-center">

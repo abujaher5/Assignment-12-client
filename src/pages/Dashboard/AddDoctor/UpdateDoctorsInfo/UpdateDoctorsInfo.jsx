@@ -58,9 +58,9 @@ const UpdateDoctorsInfo = () => {
   };
   return (
     <div>
-      <div className="mt-6 bg-cyan-700 p-10 rounded-xl shadow-lg text-white ">
+      <div className="mt-6 bg-cyan-700 p-10 rounded-xl shadow-lg text-white  ">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="lg:flex gap-6">
+          <div className="lg:flex gap-6 ">
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text text-white ">Doctor Name*</span>

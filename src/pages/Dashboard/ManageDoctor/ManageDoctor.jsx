@@ -77,7 +77,7 @@ const ManageDoctor = () => {
                 <td>{doctor.location}</td>
                 <td>{doctor.availableOn} </td>
                 <td>
-                  <Link to={`/dashboard/updateDoctorsInfo/${doctor._id}`}>
+                  <Link to={`/dashboard/updateDoctorInfo/${doctor._id}`}>
                     <button className="btn btn-ghost hover:bg-green-300">
                       <FaEdit
                         size={30}

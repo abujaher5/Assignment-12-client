@@ -16,6 +16,8 @@ import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
 import ManageDoctor from "../pages/Dashboard/ManageDoctor/ManageDoctor";
 import UpdateDoctorsInfo from "../pages/Dashboard/AddDoctor/UpdateDoctorsInfo/UpdateDoctorsInfo";
 import AddBanner from "../pages/Dashboard/AddBanner/AddBanner";
+import ManageBanners from "../pages/Dashboard/ManageBanner/ManageBanners";
+import UpdateBannersInfo from "../pages/Dashboard/AddBanner/UpdateBannersInfo/UpdateBannersInfo";
 
 export const router = createBrowserRouter([
   {
@@ -83,14 +85,24 @@ export const router = createBrowserRouter([
         element: <ManageDoctor />,
       },
       {
+        path: "manageBanners",
+        element: <ManageBanners />,
+      },
+      {
         path: "userHome",
         element: <UserHome />,
       },
       {
-        path: "updateDoctorsInfo/:id",
+        path: "updateDoctorInfo/:id",
         element: <UpdateDoctorsInfo />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/doctors/${params.id}`),
+      },
+      {
+        path: "updateBannerInfo/:id",
+        element: <UpdateBannersInfo />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/banners/${params.id}`),
       },
     ],
   },
