@@ -5,7 +5,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useState } from "react";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const isAdmin = false;
 
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
@@ -68,14 +68,12 @@ const Dashboard = () => {
           <li>
             <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>
           </li>
-          {/* <li>
-                <NavLink to="/dashboard/cart">My Cart ({cart.length})</NavLink>
-              </li> */}
+
           <li>
             <NavLink to="/dashboard/addReview">Add Review</NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/myBooking">My Booking</NavLink>
+            <NavLink to="/dashboard/myListings">My Listing</NavLink>
           </li>
 
           <div className="divider"></div>

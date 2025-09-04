@@ -115,8 +115,6 @@ const UpdateBannersInfo = () => {
               placeholder-black placeholder-opacity-40
               md:placeholder-black lg:placeholder-black
               focus:bg-white
-              
-      
               w-full "
               />
             </div>

@@ -1,4 +1,5 @@
 import Testimonial from "../../components/Testimonial";
+import AllTests from "../AllTests/AllTests";
 import OurService from "../OurService/OurService";
 import Banner from "./Banner/Banner";
 import ContactUs from "./Contact/ContactUs";
@@ -11,6 +12,7 @@ const Home = () => {
       <Banner />
       <OurService />
       <OurDoctor />
+      <AllTests />
       <Technology />
       <Testimonial />
       <ContactUs />
