@@ -19,6 +19,7 @@ import AddBanner from "../pages/Dashboard/AddBanner/AddBanner";
 import ManageBanners from "../pages/Dashboard/ManageBanner/ManageBanners";
 import UpdateBannersInfo from "../pages/Dashboard/AddBanner/UpdateBannersInfo/UpdateBannersInfo";
 import MyListings from "../pages/Dashboard/UsersComponents/MyListings/MyListings";
+import AddReview from "../pages/Dashboard/UsersComponents/AddReview/AddReview";
 
 export const router = createBrowserRouter([
   {
@@ -110,6 +111,10 @@ export const router = createBrowserRouter([
       {
         path: "myListings",
         element: <MyListings />,
+      },
+      {
+        path: "addReview",
+        element: <AddReview />,
       },
     ],
   },
