@@ -36,6 +36,7 @@ const Banner = () => {
           <Slide img={img2} />
         </SwiperSlide>
       </Swiper>
+
       <div className="flex z-10 flex-col lg:flex-row  justify-center  items-center lg:justify-center lg:items-center gap-6 mt-4 lg:gap-10 lg:mx-auto  lg:absolute   lg:-bottom-10 lg:left-1/2 lg:transform lg:-translate-x-1/2 ">
         <div
           className="lg:w-[170px] w-3/4  h-[75px] bg-blue-500 hover:border-white border-2 hover:text-black 
