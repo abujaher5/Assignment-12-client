@@ -18,7 +18,8 @@ const Register = () => {
 
   const upazilas = upazilaData;
 
-  const { createUser } = useAuth();
+  const { createUser, updateUserProfile } = useAuth();
+  // console.log(createUser, "This is", updateUserProfile);
   const navigate = useNavigate();
 
   const {
@@ -29,45 +30,85 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // // img bb to  send avatar to data base
-    // const imageFile = { image: data.image[0] };
-    // const res = await axiosPublic.post(image_hosting_api, imageFile, {
-    //   headers: {
-    //     "content-type": "multipart/form-data",
-    //   },
-    // });
-    // if (res.data.success) {
-    //   const image = res.data.data.display_url;
-    // }
-    createUser(data.email, data.password)
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        const userInfo = {
-          name: data.name,
-          email: data.email,
-          status: "Active",
-          role: "Admin",
-          // avatar: res.data.data.display_url,
-        };
-        console.log(userInfo);
-        axiosPublic.post("/users", userInfo).then((res) => {
-          if (res.data.insertedId) {
-            console.log("user added to the database");
-            // reset();
-            Swal.fire({
-              position: "top-left",
-              icon: "success",
-              title: "User Profile Update Successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/");
-          }
-        });
-      })
+    // img bb to  send avatar to data base
+    const imageFile = { image: data.image[0] };
+    console.log(imageFile);
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    if (res.data.success) {
+      // const image = res.data.data.display_url;
+      // console.log(image);
+      createUser(data.email, data.password)
+        .then((result) => {
+          const loggedUser = result.user;
+          console.log("created User", loggedUser);
+          updateUserProfile(data.name, data.image)
+            .then(() => {
+              console.log("Profile Updated");
+            })
+            .catch((error) =>
+              console.log("Update Profile Error", error.message)
+            );
 
-      .catch((error) => console.log(error));
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+            status: "Active",
+            role: "Admin",
+            image: res.data.data.display_url,
+          };
+
+          console.log(userInfo);
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user added to the database");
+              reset();
+              Swal.fire({
+                position: "top-left",
+                icon: "success",
+                title: "User Profile Login Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
+          });
+        })
+
+        .catch((error) => console.log(error));
+    }
+    // createUser(data.email, data.password)
+    //   .then((result) => {
+    //     const loggedUser = result.user;
+    //     console.log(loggedUser);
+    //     const userInfo = {
+    //       name: data.name,
+    //       email: data.email,
+    //       status: "Active",
+    //       role: "Admin",
+    //       avatar: res.data.data.display_url,
+    //     };
+    //     console.log(userInfo);
+    //     axiosPublic.post("/users", userInfo).then((res) => {
+    //       if (res.data.insertedId) {
+    //         console.log("user added to the database");
+    //         reset();
+    //         Swal.fire({
+    //           position: "top-left",
+    //           icon: "success",
+    //           title: "User Profile Update Successfully",
+    //           showConfirmButton: false,
+    //           timer: 1500,
+    //         });
+    //         navigate("/");
+    //       }
+    //     });
+    //   })
+
+    //   .catch((error) => console.log(error));
   };
   return (
     <div>
@@ -111,8 +152,9 @@ const Register = () => {
                   {...register("bloodGroup", { required: true })}
                   name="bloodGroup"
                   className="select select-bordered"
+                  defaultValue={"selected"}
                 >
-                  <option disabled selected>
+                  <option value={"selected"} disabled>
                     Select Your Blood
                   </option>
                   <option>A+</option>
@@ -132,8 +174,9 @@ const Register = () => {
                   {...register("district", { required: true })}
                   name="district"
                   className="select select-bordered"
+                  defaultValue={"selected"}
                 >
-                  <option disabled selected>
+                  <option value={"selected"} disabled>
                     Select Your District
                   </option>
 
@@ -149,20 +192,20 @@ const Register = () => {
                   {...register("upazila", { required: true })}
                   name="upazila"
                   className="select select-bordered"
+                  defaultValue={"selected"}
                 >
-                  <option disabled selected>
+                  <option disabled value={"selected"}>
                     Select Your Upazila
                   </option>
                   {upazilas.map((upazila) => (
-                    <option>{upazila.name}</option>
+                    <option key={upazila.id}>{upazila.name}</option>
                   ))}
                 </select>
               </div>
               <div className="form-control">
-                <label className="label">Avater</label>
+                <label className="label">Avatar</label>
                 <input
-                  {...register("avatar", { required: true })}
-                  name="avatar"
+                  {...register("image", { required: true })}
                   type="file"
                   className="file-input file-input-bordered w-full max-w-xs"
                 />

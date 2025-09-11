@@ -2,11 +2,24 @@ import { BiCurrentLocation, BiMailSend, BiPhone } from "react-icons/bi";
 import { FaMailBulk } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import { MdLocalPhone } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ContactUs = () => {
+  const navigate = useNavigate();
+  const handleSendMessage = () => {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your Message Send Successfully..",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/ourServices");
+  };
   return (
     <div className="my-10">
-      <section className="py-6 bg-gray-800 dark:bg-gray-100 space-y-10 text-gray-50 dark:text-gray-900">
+      <section className="py-6 text-black bg-gray-100 space-y-10 rounded-lg  dark:text-gray-900 shadow-lg">
         <div className="grid  grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
           <form
             noValidate=""
@@ -45,6 +58,7 @@ const ContactUs = () => {
               ></textarea>
             </label>
             <button
+              onClick={() => handleSendMessage()}
               type="button"
               className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 bg-violet-400 dark:bg-violet-600 text-gray-900 dark:text-gray-50 focus:ring-violet-400 focus:dark:ring-violet-600 hover:ring-violet-400 hover:dark:ring-violet-600"
             >

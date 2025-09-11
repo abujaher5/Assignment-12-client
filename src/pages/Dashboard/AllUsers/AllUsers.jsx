@@ -11,7 +11,8 @@ const AllUsers = () => {
       return res.data;
     },
   });
-  // console.log(users);
+
+  console.log(users);
   return (
     <div className="overflow-x-auto shadow-xl bg-slate-200 rounded-md">
       <div>
@@ -42,10 +43,7 @@ const AllUsers = () => {
                 <div className="flex items-center gap-3">
                   <div className="avatar">
                     <div className="mask mask-squircle h-12 w-12">
-                      <img
-                        src={user.photoURL}
-                        alt="Avatar Tailwind CSS Component"
-                      />
+                      <img src={user.photoURL} alt="User Photo" />
                     </div>
                   </div>
                 </div>

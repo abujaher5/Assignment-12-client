@@ -104,11 +104,13 @@ const Navbar = () => {
                 </li>
               </>
             )}
-            <div className="avatar">
-              <div className="w-12 rounded-full border-2">
-                <img src={user?.photoURL} alt={user?.displayName} />
+            {user && (
+              <div className="avatar">
+                <div className="w-12 rounded-full border-2 ">
+                  <img src={user?.photoURL} alt={user?.displayName} />
+                </div>
               </div>
-            </div>
+            )}
           </ul>
         </div>
       </div>
