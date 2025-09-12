@@ -20,6 +20,8 @@ import ManageBanners from "../pages/Dashboard/ManageBanner/ManageBanners";
 import UpdateBannersInfo from "../pages/Dashboard/AddBanner/UpdateBannersInfo/UpdateBannersInfo";
 import MyListings from "../pages/Dashboard/UsersComponents/MyListings/MyListings";
 import AddReview from "../pages/Dashboard/UsersComponents/AddReview/AddReview";
+import ManageTests from "../pages/Dashboard/ManageTest/ManageTests";
+import UpdateTest from "../pages/Dashboard/AddTests/UpdateTest/UpdateTest";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +87,10 @@ export const router = createBrowserRouter([
         element: <AddBanner />,
       },
       {
+        path: "manageTests",
+        element: <ManageTests />,
+      },
+      {
         path: "manageDoctors",
         element: <ManageDoctor />,
       },
@@ -95,6 +101,12 @@ export const router = createBrowserRouter([
       {
         path: "userHome",
         element: <UserHome />,
+      },
+      {
+        path: "updateTestInfo/:id",
+        element: <UpdateTest />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/tests/${params.id}`),
       },
       {
         path: "updateDoctorInfo/:id",

@@ -5,7 +5,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useState } from "react";
 
 const Dashboard = () => {
-  const isAdmin = false;
+  const isAdmin = true;
 
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
@@ -41,6 +41,9 @@ const Dashboard = () => {
           </li>
           <li>
             <NavLink to="/dashboard/addBanner">Add Banner</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/manageTests">Manage Tests</NavLink>
           </li>
 
           <li>

@@ -1,0 +1,141 @@
+import { useLoaderData, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+const image_hosting_key = import.meta.env.VITE_image_hosting_key;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
+const UpdateTest = () => {
+  const { name, price, testDetails, image, _id } = useLoaderData();
+  const { register, handleSubmit, reset } = useForm();
+  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
+  console.log(name, _id);
+  const onSubmit = async (data) => {
+    console.log(data);
+    console.log("Button Clicked");
+
+    const imageFile = { image: data.image[0] };
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    console.log(res);
+
+    if (res.data.success) {
+      const updatedItem = {
+        name: data.name,
+        price: data.price,
+        testDetails: data.testDetails,
+        image: res.data.data.display_url,
+      };
+
+      const updatedRes = await axiosSecure.patch(`/tests/${_id}`, updatedItem);
+      console.log(updatedRes.data);
+      if (updatedRes.data.modifiedCount > 0) {
+        reset();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${data.name} information updated Successfully.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/dashboard/manageTests");
+      }
+    }
+  };
+  return (
+    <div>
+      <div className="mt-6 bg-cyan-700 p-10 rounded-xl shadow-lg text-white  ">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="lg:flex gap-6 ">
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text text-white ">Test Name</span>
+              </label>
+              <input
+                type="text"
+                defaultValue={name}
+                placeholder="Test Name"
+                {...register("name", { required: true })}
+                className="input 
+                input-bordered
+              text-black
+              placeholder-black
+              md:placeholder-black lg:placeholder-black
+              focus:bg-white placeholder-opacity-40
+              
+      
+              w-full "
+              />
+            </div>
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text text-white "> Test Price</span>
+              </label>
+              <input
+                type="number"
+                defaultValue={price}
+                placeholder="Test Price "
+                {...register("price", { required: true })}
+                className="input input-bordered
+              text-black
+              placeholder-black
+              md:placeholder-black lg:placeholder-black
+              focus:bg-white placeholder-opacity-40
+              
+      
+              w-full "
+              />
+            </div>
+          </div>
+
+          <div className="lg:flex gap-6">
+            <div className="form-control w-full ">
+              <label className="label">
+                <span className="label-text text-white">Test Details</span>
+              </label>
+              <textarea
+                type="text"
+                defaultValue={testDetails}
+                required
+                placeholder="Test Details"
+                {...register("testDetails", { required: true })}
+                className="input input-bordered
+         text-black
+         placeholder-black
+              focus:bg-white placeholder-opacity-40 w-full "
+              />
+            </div>
+          </div>
+
+          <div className="lg:flex  gap-6">
+            <div className="form-control w-full">
+              <div className="label">
+                <span className="label-text text-white">Test Image</span>
+              </div>
+
+              <input
+                {...register("image", { required: true })}
+                type="file"
+                className="file-input text-black 
+                text-opacity-40
+                file-input-bordered w-full"
+              />
+            </div>
+          </div>
+
+          <button className="btn my-10 bg-blue-500  w-full">
+            Update Tests Info
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default UpdateTest;
