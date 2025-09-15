@@ -32,20 +32,23 @@ const Register = () => {
   const onSubmit = async (data) => {
     // img bb to  send avatar to data base
     const imageFile = { image: data.image[0] };
-    console.log(imageFile);
+
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",
       },
     });
+
     if (res.data.success) {
-      // const image = res.data.data.display_url;
-      // console.log(image);
+      const image = res.data.data.display_url;
+      console.log(image);
+
       createUser(data.email, data.password)
         .then((result) => {
           const loggedUser = result.user;
           console.log("created User", loggedUser);
-          updateUserProfile(data.name, data.image)
+
+          updateUserProfile(data.name, image)
             .then(() => {
               console.log("Profile Updated");
             })
