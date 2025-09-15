@@ -12,8 +12,6 @@ const AddTests = () => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const onSubmit = async (data) => {
-    console.log(data);
-
     // image upload to imgbb and then get an url
 
     const imageFile = { image: data.image[0] };
@@ -27,7 +25,7 @@ const AddTests = () => {
       //now send the testItem data to the server with the image url
       const testItem = {
         name: data.name,
-        date: data.date,
+        category: data.category,
         price: parseFloat(data.price),
         testDetails: data.details,
         image: res.data.data.display_url,
@@ -61,7 +59,7 @@ const AddTests = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text text-white ">Test Name*</span>
+              <span className="label-text text-white ">Test Name</span>
             </label>
             <input
               type="text"
@@ -81,25 +79,38 @@ const AddTests = () => {
           <div className="flex flex-col lg:flex-row lg:gap-6">
             <div className="form-control w-full ">
               <label className="label">
-                <span className="label-text text-white">Date*</span>
+                <span className="label-text text-white">Category</span>
               </label>
-              <input
-                type="date"
+              {/* <input
+                type="category"
                 required
-                placeholder="Date"
-                {...register("date", { required: true })}
+                placeholder="category"
+                {...register("category", { required: true })}
                 className="input input-bordered
          text-black
          placeholder-opacity-40
          text-opacity-40
             
               focus:bg-white w-full "
-              />
+              /> */}
+
+              <select
+                defaultValue={"default"}
+                {...register("category", { required: true })}
+                className="select text-black  select-neutral w-full"
+              >
+                <option value={"default"} disabled>
+                  Select A Category
+                </option>
+                <option value={"pathology"}>Pathology</option>
+                <option value={"radiology"}>Radiology</option>
+                <option value={"imaginary"}>Imaginary</option>
+              </select>
             </div>
 
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text text-white">Price*</span>
+                <span className="label-text text-white">Price</span>
               </label>
               <input
                 type="number"
@@ -117,7 +128,7 @@ const AddTests = () => {
 
           <div className="form-control">
             <div className="label">
-              <span className="label-text text-white">Test Details*</span>
+              <span className="label-text text-white">Test Details</span>
             </div>
             <textarea
               {...register("details")}

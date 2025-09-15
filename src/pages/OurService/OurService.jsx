@@ -1,6 +1,11 @@
 import { FaAmbulance } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const OurService = () => {
+  const navigate = useNavigate();
+  const handleClick = (category) => {
+    navigate(`/allTest?category=${category}`);
+  };
   return (
     <div className="flex flex-col p-2  lg:flex lg:flex-row gap-5 mt-20 bg-[linear-gradient(0deg,#151515B3,#151515B3),url('https://i.ibb.co.com/fdTXj4C7/doctors-office-flatlay.jpg')] bg-cover bg-no-repeat bg-fixed text-white  ">
       <div className="flex-1 text-center lg:text-start lg:ml-4    ">
@@ -16,10 +21,10 @@ const OurService = () => {
         <h2 className="text-2xl font-semibold text-white my-6">We Provide</h2>
         <div className="flex flex-col items-center lg:grid lg:grid-cols-2 gap-3">
           <div className="w-2/3 rounded-md bg-blue-500 text-white font-semibold text-lg p-4">
-            Pathology
+            <button onClick={() => handleClick("pathology")}>Pathology</button>
           </div>
           <div className="w-2/3 rounded-md bg-blue-500 text-white font-semibold text-lg p-4">
-            Radiology
+            <button>Radiology</button>
           </div>
           <div className="w-2/3 rounded-md bg-blue-500 text-white font-semibold text-lg p-4">
             Imaginary

@@ -12,14 +12,14 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <div className="maw-w-7xl mx-auto">
-    <StrictMode>
-      <AuthProvider>
-        <QueryClientProvider client={queryClient}>
-          <HelmetProvider>
-            <RouterProvider router={router} />
-          </HelmetProvider>
-        </QueryClientProvider>
-      </AuthProvider>
-    </StrictMode>
+    {/* <StrictMode> */}
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <HelmetProvider>
+          <RouterProvider router={router} />
+        </HelmetProvider>
+      </QueryClientProvider>
+    </AuthProvider>
+    {/* </StrictMode> */}
   </div>
 );

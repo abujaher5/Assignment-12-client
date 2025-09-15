@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  console.log(user);
+  // console.log(user);
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -34,6 +34,7 @@ const Navbar = () => {
       <li>
         <Link to="/allTests">All Tests</Link>
       </li>
+
       {user ? (
         <li>
           <Link to="/dashboard/allUsers">Dashboard</Link>
