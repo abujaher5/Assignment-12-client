@@ -22,11 +22,16 @@ import MyListings from "../pages/Dashboard/UsersComponents/MyListings/MyListings
 import AddReview from "../pages/Dashboard/UsersComponents/AddReview/AddReview";
 import ManageTests from "../pages/Dashboard/ManageTest/ManageTests";
 import UpdateTest from "../pages/Dashboard/AddTests/UpdateTest/UpdateTest";
+import AddTechnology from "../pages/Dashboard/AddTechnology/AddTechnology";
+import ManageTechnologies from "../pages/Dashboard/ManageTechnologies/ManageTechnologies";
+import UpdateTechnologiesInfo from "../pages/Dashboard/AddTechnology/UpdateTechnologiesInfo/UpdateTechnologiesInfo";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -99,6 +104,10 @@ export const router = createBrowserRouter([
         element: <ManageBanners />,
       },
       {
+        path: "manageTechnologies",
+        element: <ManageTechnologies />,
+      },
+      {
         path: "userHome",
         element: <UserHome />,
       },
@@ -121,12 +130,22 @@ export const router = createBrowserRouter([
           fetch(`http://localhost:5000/banners/${params.id}`),
       },
       {
+        path: "updateTechnologiesInfo/:id",
+        element: <UpdateTechnologiesInfo />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/technologies/${params.id}`),
+      },
+      {
         path: "myListings",
         element: <MyListings />,
       },
       {
         path: "addReview",
         element: <AddReview />,
+      },
+      {
+        path: "addTechnology",
+        element: <AddTechnology />,
       },
     ],
   },

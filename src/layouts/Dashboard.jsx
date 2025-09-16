@@ -43,6 +43,9 @@ const Dashboard = () => {
             <NavLink to="/dashboard/addBanner">Add Banner</NavLink>
           </li>
           <li>
+            <NavLink to="/dashboard/addTechnology">Add Technology</NavLink>
+          </li>
+          <li>
             <NavLink to="/dashboard/manageTests">Manage Tests</NavLink>
           </li>
 
@@ -51,6 +54,11 @@ const Dashboard = () => {
           </li>
           <li>
             <NavLink to="/dashboard/manageBanners">Manage Banners</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/manageTechnologies">
+              Manage Technologies
+            </NavLink>
           </li>
           <div className="divider"></div>
 
