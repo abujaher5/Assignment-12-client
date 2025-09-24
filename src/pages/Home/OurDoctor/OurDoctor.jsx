@@ -21,17 +21,20 @@ const OurDoctor = () => {
     },
   });
   return (
-    <div className="bg-white mt-10">
-      <div className="text-center space-y-3 text-black">
+    <div className=" mt-10">
+      <div className="text-center space-y-3 text-black dark:text-white">
         <h2 className="text-4xl font-bold">Our Expert Doctors</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, porro?
         </p>
       </div>
       {/* doctors card */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 my-8 p-2">
         {doctors.map((doctor) => (
-          <div key={doctor._id} className="card bg-base-100  shadow-sm">
+          <div
+            key={doctor._id}
+            className="card bg-base-100 dark:bg-[#3986de] dark:text-white shadow-sm dark:shadow-lg"
+          >
             <figure className="px-10 pt-10">
               <img src={doctor.image} alt="Shoes" className="rounded-xl" />
             </figure>
@@ -54,7 +57,8 @@ const OurDoctor = () => {
             </div>
             <div className="flex justify-center mb-4">
               <button
-                className="btn btn-wide text-black 
+                className="btn btn-wide text-black
+                dark:bg-white 
               hover:text-white
               border-cyan-500 hover:bg-cyan-500"
               >

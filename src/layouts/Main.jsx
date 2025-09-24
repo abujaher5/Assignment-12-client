@@ -9,7 +9,7 @@ const Main = () => {
       <NoticeRelated></NoticeRelated>
       <Navbar></Navbar>
 
-      <div className="min-h-[calc(100vh-306px)] mx-auto">
+      <div className="min-h-[calc(100vh-306px)] mx-auto bg-white dark:bg-[#1c2229]">
         <Outlet></Outlet>
       </div>
 

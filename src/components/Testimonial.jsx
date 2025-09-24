@@ -22,8 +22,8 @@ const Testimonial = () => {
   });
 
   return (
-    <div className="mt-10 shadow-xl text-center max-w-7xl">
-      <section className=" max-w-7xl dark:bg-gray-100 dark:text-gray-800">
+    <div className="shadow-xl text-center max-w-7xl dark:text-white">
+      <section className=" max-w-7xl  ">
         <div className=" flex flex-col items-center mx-auto  md:p-10 md:px-12 max-w-7xl">
           <h1 className="p-4 text-4xl font-semibold leading-none text-center">
             What Our Patients Says
@@ -34,7 +34,7 @@ const Testimonial = () => {
           </p>
         </div>
 
-        <div className="bg-slate-200">
+        <div className="bg-slate-200 dark:bg-[#183659]">
           <Swiper
             breakpoints={{
               320: {

@@ -1,14 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-
-// import "./styles.css";
-
-// import required modules
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 const Technology = () => {
@@ -23,11 +17,11 @@ const Technology = () => {
   });
 
   return (
-    <div className="mt-10 p-4 ">
+    <div className="mt-5 p-4 dark:text-white ">
       <h2 className="text-5xl text-center  font-semibold">
         Technology We Have
       </h2>
-      <div className=" mt-10 ">
+      <div className="mt-10">
         <Swiper
           breakpoints={{
             320: {
@@ -54,14 +48,14 @@ const Technology = () => {
         >
           {technologies.map((technology) => (
             <SwiperSlide key={technology._id}>
-              <div className="card p-2  bg-gray-200 shadow-lg">
-                <figure className="px-10 pt-10">
+              <div className="card p-2  bg-gray-200 shadow-lg dark:text-black">
+                <div className="px-2 pt-10 flex items-center justify-center rounded-lg">
                   <img
                     src={technology.image}
                     alt="Technology Image"
-                    className="rounded-xl"
+                    className="w-full p-5 rounded-lg"
                   />
-                </figure>
+                </div>
                 <div className="card-body items-center text-center">
                   <h2 className="card-title">Our CT Machine</h2>
                   <p>

@@ -19,7 +19,7 @@ const ContactUs = () => {
   };
   return (
     <div className="my-10">
-      <section className="py-6 text-black bg-gray-100 space-y-10 rounded-lg  dark:text-gray-900 shadow-lg">
+      <section className="py-6 text-black bg-gray-100 dark:bg-[#1c2229] space-y-10 rounded-lg  dark:text-white shadow-lg">
         <div className="grid  grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
           <form
             noValidate=""
@@ -31,7 +31,7 @@ const ContactUs = () => {
                 type="text"
                 placeholder="Enter Your Name"
                 className="block w-full
-                outline-none border px-1 py-2 border-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
+                outline-none border px-1 py-2 border-black text-black  rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
               />
             </label>
             <label className="block">
@@ -40,7 +40,7 @@ const ContactUs = () => {
                 type="email"
                 placeholder="Enter Your Email"
                 className="block w-full
-                outline-none border px-1 py-2 border-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
+                outline-none border px-1 py-2 border-black text-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
               />
             </label>
             <label className="block">
@@ -49,7 +49,7 @@ const ContactUs = () => {
                 type="number"
                 placeholder="0123456789"
                 className="block w-full
-                outline-none border px-1 py-2 border-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
+                outline-none border px-1 py-2 border-black text-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
               />
             </label>
             <label className="block">
@@ -58,7 +58,7 @@ const ContactUs = () => {
                 rows="3"
                 placeholder="Type Your Message"
                 className="block w-full
-                outline-none border px-1 py-2 border-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
+                outline-none border px-1 py-2 border-black text-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
               ></textarea>
             </label>
             <button
