@@ -30,7 +30,8 @@ const ContactUs = () => {
               <input
                 type="text"
                 placeholder="Enter Your Name"
-                className="block w-full border p-1 border-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-violet-400 focus:dark:ring-violet-600 bg-gray-800 dark:bg-gray-100"
+                className="block w-full
+                outline-none border px-1 py-2 border-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
               />
             </label>
             <label className="block">
@@ -38,7 +39,8 @@ const ContactUs = () => {
               <input
                 type="email"
                 placeholder="Enter Your Email"
-                className="block w-full border border-black p-1 rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-violet-400 focus:dark:ring-violet-600 bg-gray-800 dark:bg-gray-100"
+                className="block w-full
+                outline-none border px-1 py-2 border-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
               />
             </label>
             <label className="block">
@@ -46,7 +48,8 @@ const ContactUs = () => {
               <input
                 type="number"
                 placeholder="0123456789"
-                className="block w-full border border-black p-1 rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-violet-400 focus:dark:ring-violet-600 bg-gray-800 dark:bg-gray-100"
+                className="block w-full
+                outline-none border px-1 py-2 border-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
               />
             </label>
             <label className="block">
@@ -54,7 +57,8 @@ const ContactUs = () => {
               <textarea
                 rows="3"
                 placeholder="Type Your Message"
-                className="block w-full border border-black p-1 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 focus:dark:ring-violet-600 bg-gray-800 dark:bg-gray-100"
+                className="block w-full
+                outline-none border px-1 py-2 border-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
               ></textarea>
             </label>
             <button

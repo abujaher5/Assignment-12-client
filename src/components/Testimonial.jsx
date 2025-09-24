@@ -23,8 +23,8 @@ const Testimonial = () => {
 
   return (
     <div className="mt-10 shadow-xl text-center max-w-7xl">
-      <section className="my-8 max-w-7xl dark:bg-gray-100 dark:text-gray-800">
-        <div className=" flex flex-col items-center mx-auto mb-12 md:p-10 md:px-12 max-w-7xl">
+      <section className=" max-w-7xl dark:bg-gray-100 dark:text-gray-800">
+        <div className=" flex flex-col items-center mx-auto  md:p-10 md:px-12 max-w-7xl">
           <h1 className="p-4 text-4xl font-semibold leading-none text-center">
             What Our Patients Says
           </h1>
@@ -33,7 +33,8 @@ const Testimonial = () => {
             nulla atque, inventore odit minus.fkjjkj fjslkfj .
           </p>
         </div>
-        <div className="bg-gray-300">
+
+        <div className="bg-slate-200">
           <Swiper
             breakpoints={{
               320: {

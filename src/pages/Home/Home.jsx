@@ -12,7 +12,6 @@ const Home = () => {
       <Banner />
       <OurService />
       <OurDoctor />
-      <AllTests />
       <Technology />
       <Testimonial />
       <ContactUs />
