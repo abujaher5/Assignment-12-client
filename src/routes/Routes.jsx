@@ -26,6 +26,8 @@ import AddTechnology from "../pages/Dashboard/AddTechnology/AddTechnology";
 import ManageTechnologies from "../pages/Dashboard/ManageTechnologies/ManageTechnologies";
 import UpdateTechnologiesInfo from "../pages/Dashboard/AddTechnology/UpdateTechnologiesInfo/UpdateTechnologiesInfo";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import AdminRoute from "./AdminRoute/AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -68,7 +70,12 @@ export const router = createBrowserRouter([
 
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+
     children: [
       // users route
       {
@@ -76,8 +83,17 @@ export const router = createBrowserRouter([
         element: <UserProfile></UserProfile>,
       },
       {
+        path: "userHome",
+        element: <UserHome></UserHome>,
+      },
+      {
         path: "allUsers",
-        element: <AllUsers></AllUsers>,
+
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "addATest",

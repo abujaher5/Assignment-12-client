@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 
 import districtData from "../../../public/district.json";
-import upazilaData from "../../../public/upazilas.json";
+
 import { Helmet } from "react-helmet-async";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
@@ -15,9 +15,6 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const Register = () => {
   const axiosPublic = useAxiosPublic();
   const district = districtData;
-
-  const upazilas = upazilaData;
-
   const { createUser, updateUserProfile } = useAuth();
   // console.log(createUser, "This is", updateUserProfile);
   const navigate = useNavigate();
@@ -59,8 +56,10 @@ const Register = () => {
           const userInfo = {
             name: data.name,
             email: data.email,
+            bloodGroup: data.bloodGroup,
+            district: data.district,
             status: "Active",
-            role: "Admin",
+            // role: "Admin",
             image: res.data.data.display_url,
           };
 
@@ -190,23 +189,7 @@ const Register = () => {
               </div>
 
               <div className="form-control">
-                <label className="label">Upazila</label>
-                <select
-                  {...register("upazila", { required: true })}
-                  name="upazila"
-                  className="select select-bordered"
-                  defaultValue={"selected"}
-                >
-                  <option disabled value={"selected"}>
-                    Select Your Upazila
-                  </option>
-                  {upazilas.map((upazila) => (
-                    <option key={upazila.id}>{upazila.name}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="form-control">
-                <label className="label">Avatar</label>
+                <label className="label">Profile Photo</label>
                 <input
                   {...register("image", { required: true })}
                   type="file"

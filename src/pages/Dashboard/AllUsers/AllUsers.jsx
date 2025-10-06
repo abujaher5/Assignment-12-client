@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -12,7 +13,6 @@ const AllUsers = () => {
     },
   });
 
-  console.log(users);
   return (
     <div className="overflow-x-auto shadow-xl bg-slate-200 rounded-md">
       <div>
@@ -43,7 +43,7 @@ const AllUsers = () => {
                 <div className="flex items-center gap-3">
                   <div className="avatar">
                     <div className="mask mask-squircle h-12 w-12">
-                      <img src={user.photoURL} alt="User Photo" />
+                      <img src={user.image} alt="User Photo" />
                     </div>
                   </div>
                 </div>
@@ -53,7 +53,10 @@ const AllUsers = () => {
               <td>{user.status}</td>
               <td>{user.role}</td>
               <td>
-                <button className="btn btn-ghost btn-xs">Details</button>
+                {/* <button className="btn btn-ghost btn-xs">Details</button> */}
+                <Link to={`/dashboard/users/${user._id}`}>
+                  <button className="btn btn-primary">Details</button>
+                </Link>
               </td>
             </tr>
           ))}
