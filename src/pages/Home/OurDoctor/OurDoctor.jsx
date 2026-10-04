@@ -1,74 +1,64 @@
-import { Rating } from "@smastrom/react-rating";
-import { useState } from "react";
-
-import "@smastrom/react-rating/style.css";
-import { CiLocationOn } from "react-icons/ci";
-import { BiCalendarEdit } from "react-icons/bi";
-import { TiTime } from "react-icons/ti";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { FaUserDoctor } from "react-icons/fa6";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import DoctorCard from "./DoctorCard";
 
 const OurDoctor = () => {
-  const [rating, setRating] = useState(4);
-
   const axiosSecure = useAxiosSecure();
 
-  const { data: doctors = [] } = useQuery({
+  const { data: doctors = [], isLoading } = useQuery({
     queryKey: ["doctors"],
     queryFn: async () => {
       const res = await axiosSecure.get("/doctors");
       return res.data;
     },
   });
+
   return (
-    <div className=" mt-10">
-      <div className="text-center space-y-3 text-black dark:text-white">
-        <h2 className="text-4xl font-bold">Our Expert Doctors</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, porro?
-        </p>
-      </div>
-      {/* doctors card */}
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 my-8 p-2">
-        {doctors.map((doctor) => (
-          <div
-            key={doctor._id}
-            className="card bg-base-100 dark:bg-[#3986de] dark:text-white shadow-sm dark:shadow-lg"
-          >
-            <figure className="px-10 pt-10">
-              <img src={doctor.image} alt="Shoes" className="rounded-xl" />
-            </figure>
+    <section className="bg-white py-16 dark:bg-[#1c2229] lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700 dark:bg-blue-500/10 dark:text-blue-400">
+            <FaUserDoctor className="text-base" /> Meet Our Specialists
+          </span>
+          <h2 className="mt-4 text-3xl font-extrabold text-slate-800 dark:text-white lg:text-4xl">
+            Our Expert Doctors
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-slate-500 dark:text-slate-400 sm:text-base">
+            Consult our experienced and certified specialists for accurate
+            diagnosis and compassionate care at every step of your health
+            journey.
+          </p>
+        </div>
 
-            <div className="card-body items-start ">
-              <h2 className="card-title">{doctor.name}</h2>
-              <p>{doctor.specialize}</p>
-
-              <Rating style={{ maxWidth: 150 }} value={rating} readOnly />
-
-              <p className="flex items-center justify-center gap-4">
-                <CiLocationOn /> Agrabad, Chittagong, Bangladesh
-              </p>
-              <p className="flex items-center justify-center gap-4">
-                <BiCalendarEdit /> Available On Sun,Tues and Wednesday
-              </p>
-              <p className="flex items-center justify-center gap-4">
-                <TiTime /> From 10:00 am to 2:00 pm
-              </p>
-            </div>
-            <div className="flex justify-center mb-4">
-              <button
-                className="btn btn-wide text-black
-                dark:bg-white 
-              hover:text-white
-              border-cyan-500 hover:bg-cyan-500"
-              >
-                View Profile
-              </button>
-            </div>
+        {isLoading ? (
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((item) => (
+              <div
+                key={item}
+                className="h-[430px] animate-pulse rounded-3xl border border-slate-100 bg-slate-100 dark:border-slate-700 dark:bg-slate-800"
+              />
+            ))}
           </div>
-        ))}
+        ) : doctors.length === 0 ? (
+          <div className="mt-12 flex flex-col items-center justify-center rounded-3xl border border-dashed border-slate-200 bg-slate-50 py-16 text-center dark:border-slate-700 dark:bg-slate-800/40">
+            <FaUserDoctor className="text-5xl text-slate-300 dark:text-slate-600" />
+            <p className="mt-4 text-base font-semibold text-slate-600 dark:text-slate-300">
+              No doctors available at the moment
+            </p>
+            <p className="mt-1 text-sm text-slate-400">
+              Please check back later for our specialist doctors.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {doctors.map((doctor) => (
+              <DoctorCard key={doctor._id} doctor={doctor} />
+            ))}
+          </div>
+        )}
       </div>
-    </div>
+    </section>
   );
 };
 
