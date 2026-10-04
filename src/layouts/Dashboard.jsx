@@ -1,23 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useState } from "react";
 import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
 
-  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: users = [] } = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/users");
-      return res.data;
-    },
-  });
-  // console.log(users);
+
   // dropdown toggle
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
@@ -75,7 +65,7 @@ const Dashboard = () => {
             <NavLink to="/dashboard/userHome">User Home</NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/reservation">Reservation</NavLink>
+            <NavLink to="/dashboard/myAppointment">My Appointment </NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>

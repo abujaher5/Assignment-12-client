@@ -38,7 +38,7 @@ const Register = () => {
 
     if (res.data.success) {
       const image = res.data.data.display_url;
-      console.log(image);
+      // console.log(image);
 
       createUser(data.email, data.password)
         .then((result) => {

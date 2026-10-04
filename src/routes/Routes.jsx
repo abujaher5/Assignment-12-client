@@ -28,6 +28,7 @@ import UpdateTechnologiesInfo from "../pages/Dashboard/AddTechnology/UpdateTechn
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AdminRoute from "./AdminRoute/AdminRoute";
+import MyAppointment from "../pages/Dashboard/UsersComponents/MyAppointment/MyAppointment";
 
 export const router = createBrowserRouter([
   {
@@ -77,18 +78,31 @@ export const router = createBrowserRouter([
     ),
 
     children: [
-      // users route
+      // General users route
+      {
+        path: "userHome",
+        element: <UserHome />,
+      },
+      {
+        path: "myAppointment",
+        element: <MyAppointment />,
+      },
       {
         path: "userProfile",
         element: <UserProfile></UserProfile>,
       },
       {
-        path: "userHome",
-        element: <UserHome></UserHome>,
+        path: "myListings",
+        element: <MyListings />,
       },
       {
-        path: "allUsers",
+        path: "addReview",
+        element: <AddReview />,
+      },
 
+      // Admin Only routes
+      {
+        path: "allUsers",
         element: (
           <AdminRoute>
             <AllUsers />
@@ -97,39 +111,68 @@ export const router = createBrowserRouter([
       },
       {
         path: "addATest",
-        element: <AddTests></AddTests>,
+        element: (
+          <AdminRoute>
+            <AddTests />
+          </AdminRoute>
+        ),
       },
       {
         path: "addADoctor",
-        element: <AddDoctor />,
+        element: (
+          <AdminRoute>
+            <AddDoctor />
+          </AdminRoute>
+        ),
       },
       {
         path: "addBanner",
-        element: <AddBanner />,
+        element: (
+          <AdminRoute>
+            <AddBanner />
+          </AdminRoute>
+        ),
       },
       {
         path: "manageTests",
-        element: <ManageTests />,
+        element: (
+          <AdminRoute>
+            <ManageTests />
+          </AdminRoute>
+        ),
       },
       {
         path: "manageDoctors",
-        element: <ManageDoctor />,
+        element: (
+          <AdminRoute>
+            <ManageDoctor />
+          </AdminRoute>
+        ),
       },
       {
         path: "manageBanners",
-        element: <ManageBanners />,
+        element: (
+          <AdminRoute>
+            <ManageBanners />
+          </AdminRoute>
+        ),
       },
       {
         path: "manageTechnologies",
-        element: <ManageTechnologies />,
+        element: (
+          <AdminRoute>
+            <ManageTechnologies />
+          </AdminRoute>
+        ),
       },
-      {
-        path: "userHome",
-        element: <UserHome />,
-      },
+
       {
         path: "updateTestInfo/:id",
-        element: <UpdateTest />,
+        element: (
+          <AdminRoute>
+            <UpdateTest />
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/tests/${params.id}`),
       },
@@ -151,17 +194,14 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/technologies/${params.id}`),
       },
-      {
-        path: "myListings",
-        element: <MyListings />,
-      },
-      {
-        path: "addReview",
-        element: <AddReview />,
-      },
+
       {
         path: "addTechnology",
-        element: <AddTechnology />,
+        element: (
+          <AdminRoute>
+            <AddTechnology />
+          </AdminRoute>
+        ),
       },
     ],
   },

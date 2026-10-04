@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  console.log(user);
+  console.log(user?.email);
+
+  const [isAdmin] = useAdmin();
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -35,12 +38,16 @@ const Navbar = () => {
         <Link to="/allTests">All Tests</Link>
       </li>
 
-      {user ? (
+      {isAdmin ? (
         <li>
-          <Link to="/dashboard/userHome">Dashboard</Link>
+          <Link to="/dashboard/allUsers">Dashboard</Link>
         </li>
       ) : (
-        <></>
+        <>
+          <li>
+            <Link to="/dashboard/userHome">Dashboard</Link>
+          </li>
+        </>
       )}
     </>
   );
