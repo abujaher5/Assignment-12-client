@@ -1,19 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Rating } from "@smastrom/react-rating";
+import { FaQuoteLeft, FaComments, FaUserLarge } from "react-icons/fa6";
 
-// Import Swiper styles
+import "@smastrom/react-rating/style.css";
 import "swiper/css";
 import "swiper/css/pagination";
-
-// import "./styles.css";
-
-// import required modules
-import { Autoplay, Pagination } from "swiper/modules";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Testimonial = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: reviews = [] } = useQuery({
+
+  const { data: reviews = [], isLoading } = useQuery({
     queryKey: ["reviews"],
     queryFn: async () => {
       const res = await axiosSecure.get("/reviews");
@@ -22,93 +21,104 @@ const Testimonial = () => {
   });
 
   return (
-    <div className="shadow-xl text-center max-w-7xl dark:text-white">
-      <section className=" max-w-7xl  ">
-        <div className=" flex flex-col items-center mx-auto  md:p-10 md:px-12 max-w-7xl">
-          <h1 className="p-4 text-4xl font-semibold leading-none text-center">
-            What Our Patients Says
-          </h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit hic
-            nulla atque, inventore odit minus.fkjjkj fjslkfj .
+    <section className="bg-white py-16 dark:bg-[#1c2229] lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700 dark:bg-blue-500/10 dark:text-blue-400">
+            <FaComments className="text-base" /> Patient Feedback
+          </span>
+          <h2 className="mt-4 text-3xl font-extrabold text-slate-800 dark:text-white lg:text-4xl">
+            What Our Patients Say
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-slate-500 dark:text-slate-400 sm:text-base">
+            Real experiences from the people we care for. Your trust inspires us
+            to keep delivering accurate and compassionate diagnostic services.
           </p>
         </div>
 
-        <div className="bg-slate-200 dark:bg-[#183659]">
-          <Swiper
-            breakpoints={{
-              320: {
-                slidesPerView: 1,
-              },
-              640: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-            }}
-            // centeredSlides={true}
-            spaceBetween={10}
-            autoplay={{
-              delay: 3500,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Autoplay, Pagination]}
-            className="mySwiper"
-          >
-            {reviews.map((item) => (
-              <SwiperSlide key={item._id}>
-                <div className="flex flex-col max-w-sm mx-4 my-6 shadow-xl rounded-lg bg-white text md:text-">
-                  <div className="px-4 py-12 rounded-t-lg sm:px-8 md:px-12 bg-gray-50 text-black dark:text-white">
-                    <p className="relative px-6 py-1 text-lg italic text-center dark:text-gray-800">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        fill="currentColor"
-                        className="w-8 h-8 dark:text-violet-600"
-                      >
-                        <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
-                        <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
-                      </svg>
-                      {item.aboutService}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        fill="currentColor"
-                        className="absolute right-0 w-8 h-8 
-                         dark:text-violet-600"
-                      >
-                        <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
-                        <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
-                      </svg>
-                    </p>
-                  </div>
-                  <div
-                    className="flex flex-col items-center justify-center p-8 rounded-b-lg 
-                  bg-amber-600
-                  dark:bg-violet-600 dark:text-gray-50
-                  text-white"
-                  >
-                    <img
-                      src={item.image}
-                      alt=""
-                      className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 "
-                    />
-                    <p className="text-xl font-semibold leading-tight">
-                      {item.name}
-                    </p>
-                    <p className="text-sm uppercase">{item.location}</p>
-                  </div>
-                </div>
-              </SwiperSlide>
+        {isLoading ? (
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((item) => (
+              <div
+                key={item}
+                className="h-64 animate-pulse rounded-3xl border border-slate-100 bg-slate-100 dark:border-slate-700 dark:bg-slate-800"
+              />
             ))}
-          </Swiper>
-        </div>
-      </section>
-    </div>
+          </div>
+        ) : reviews.length === 0 ? (
+          <div className="mt-12 flex flex-col items-center justify-center rounded-3xl border border-dashed border-slate-200 bg-slate-50 py-16 text-center dark:border-slate-700 dark:bg-slate-800/40">
+            <FaComments className="text-5xl text-slate-300 dark:text-slate-600" />
+            <p className="mt-4 text-base font-semibold text-slate-600 dark:text-slate-300">
+              No reviews yet
+            </p>
+            <p className="mt-1 text-sm text-slate-400">
+              Be the first to share your experience with us.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-12">
+            <Swiper
+              breakpoints={{
+                320: { slidesPerView: 1 },
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              spaceBetween={24}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Autoplay, Pagination]}
+              className="testimonial-swiper"
+            >
+              {reviews.map((item) => (
+                <SwiperSlide key={item._id}>
+                  <figure className="flex h-full flex-col rounded-3xl border border-slate-100 bg-slate-50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-xl dark:border-slate-700 dark:bg-slate-800">
+                    <FaQuoteLeft className="text-2xl text-blue-200 dark:text-blue-500/40" />
+                    <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                      {item.aboutService ||
+                        "Excellent service and very supportive staff."}
+                    </blockquote>
+
+                    <Rating
+                      className="mt-4"
+                      style={{ maxWidth: 110 }}
+                      value={item.rating || 5}
+                      readOnly
+                    />
+
+                    <figcaption className="mt-5 flex items-center gap-3 border-t border-slate-200 pt-5 dark:border-slate-700">
+                      {item.image ? (
+                        <img
+                          src={item.image}
+                          alt={item.name || "Patient"}
+                          className="h-12 w-12 rounded-full object-cover ring-2 ring-blue-100 dark:ring-blue-500/30"
+                        />
+                      ) : (
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
+                          <FaUserLarge />
+                        </span>
+                      )}
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-bold text-slate-800 dark:text-white">
+                          {item.name || "Anonymous"}
+                        </p>
+                        <p className="truncate text-xs uppercase tracking-wide text-slate-400">
+                          {item.location || "Patient"}
+                        </p>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 
