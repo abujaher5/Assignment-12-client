@@ -2,12 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Rating } from "@smastrom/react-rating";
-import { FaQuoteLeft, FaComments, FaUserLarge } from "react-icons/fa6";
+import { FaQuoteRight, FaComments, FaUserLarge, FaCheck } from "react-icons/fa6";
 
 import "@smastrom/react-rating/style.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+
+const accents = [
+  "from-blue-500 to-cyan-500",
+  "from-violet-500 to-fuchsia-500",
+  "from-emerald-500 to-teal-500",
+  "from-amber-500 to-orange-500",
+];
 
 const Testimonial = () => {
   const axiosSecure = useAxiosSecure();
@@ -74,46 +81,65 @@ const Testimonial = () => {
               modules={[Autoplay, Pagination]}
               className="testimonial-swiper"
             >
-              {reviews.map((item) => (
-                <SwiperSlide key={item._id}>
-                  <figure className="flex h-full flex-col rounded-3xl border border-slate-100 bg-slate-50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-xl dark:border-slate-700 dark:bg-slate-800">
-                    <FaQuoteLeft className="text-2xl text-blue-200 dark:text-blue-500/40" />
-                    <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                      {item.aboutService ||
-                        "Excellent service and very supportive staff."}
-                    </blockquote>
+              {reviews.map((item, index) => {
+                const accent =
+                  accents[index % accents.length];
+                return (
+                  <SwiperSlide key={item._id}>
+                    <figure className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-transparent hover:shadow-2xl hover:shadow-blue-200/50 dark:border-slate-700 dark:bg-slate-800 dark:hover:shadow-blue-900/30">
+                      <span
+                        className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${accent}`}
+                      />
+                      <FaQuoteRight className="pointer-events-none absolute -right-2 -top-1 rotate-12 text-7xl text-slate-100 transition-colors duration-300 group-hover:text-blue-100 dark:text-slate-700/40 dark:group-hover:text-slate-700" />
 
-                    <Rating
-                      className="mt-4"
-                      style={{ maxWidth: 110 }}
-                      value={item.rating || 5}
-                      readOnly
-                    />
+                      <Rating
+                        className="relative"
+                        style={{ maxWidth: 110 }}
+                        value={item.rating || 5}
+                        readOnly
+                      />
 
-                    <figcaption className="mt-5 flex items-center gap-3 border-t border-slate-200 pt-5 dark:border-slate-700">
-                      {item.image ? (
-                        <img
-                          src={item.image}
-                          alt={item.name || "Patient"}
-                          className="h-12 w-12 rounded-full object-cover ring-2 ring-blue-100 dark:ring-blue-500/30"
-                        />
-                      ) : (
-                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
-                          <FaUserLarge />
-                        </span>
-                      )}
-                      <div className="min-w-0">
-                        <p className="truncate text-sm font-bold text-slate-800 dark:text-white">
-                          {item.name || "Anonymous"}
-                        </p>
-                        <p className="truncate text-xs uppercase tracking-wide text-slate-400">
-                          {item.location || "Patient"}
-                        </p>
-                      </div>
-                    </figcaption>
-                  </figure>
-                </SwiperSlide>
-              ))}
+                      <blockquote className="relative mt-4 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                        &ldquo;
+                        {item.aboutService ||
+                          "Excellent service and very supportive staff."}
+                        &rdquo;
+                      </blockquote>
+
+                      <figcaption className="relative mt-6 flex items-center gap-4 border-t border-dashed border-slate-200 pt-5 dark:border-slate-700">
+                        <div className="relative shrink-0">
+                          <div
+                            className={`rounded-full bg-gradient-to-br p-[3px] ${accent}`}
+                          >
+                            {item.image ? (
+                              <img
+                                src={item.image}
+                                alt={item.name || "Patient"}
+                                className="h-14 w-14 rounded-full border-2 border-white object-cover dark:border-slate-800"
+                              />
+                            ) : (
+                              <span className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-white bg-blue-100 text-blue-600 dark:border-slate-800 dark:bg-slate-700 dark:text-blue-400">
+                                <FaUserLarge className="text-xl" />
+                              </span>
+                            )}
+                          </div>
+                          <span className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-[10px] text-white ring-2 ring-white dark:ring-slate-800">
+                            <FaCheck />
+                          </span>
+                        </div>
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-bold text-slate-800 dark:text-white">
+                            {item.name || "Anonymous"}
+                          </p>
+                          <p className="truncate text-xs uppercase tracking-wide text-slate-400">
+                            {item.location || "Patient"}
+                          </p>
+                        </div>
+                      </figcaption>
+                    </figure>
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
         )}
