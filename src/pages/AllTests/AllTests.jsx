@@ -38,8 +38,11 @@ const AllTests = () => {
   //   console.log(typed);
   // };
 
+  const [searchParams] = useSearchParams();
+  const categoryParam = searchParams.get("category");
+
   const [searchTerm, setSearchTerm] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [categoryFilter, setCategoryFilter] = useState(categoryParam || "All");
 
   const filterTypedItems = tests.filter((test) => {
     const matchesSearch = test.name
@@ -72,9 +75,7 @@ const AllTests = () => {
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
             >
-              <option value={"All"} disabled>
-                Select By Category
-              </option>
+              <option value={"All"}>All Categories</option>
               <option value={"pathology"}>Pathology</option>
               <option value={"radiology"}>Radiology</option>
               <option value={"imaginary"}>Imaginary</option>
