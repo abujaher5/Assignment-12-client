@@ -1,101 +1,187 @@
-import { BiCurrentLocation, BiMailSend, BiPhone } from "react-icons/bi";
-import { FaMailBulk } from "react-icons/fa";
-import { IoLocationSharp } from "react-icons/io5";
-import { MdLocalPhone } from "react-icons/md";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import {
+  FaLocationDot,
+  FaPhoneVolume,
+  FaEnvelope,
+  FaClock,
+  FaPaperPlane,
+  FaCommentDots,
+  FaHeadset,
+} from "react-icons/fa6";
+
+const contactInfo = [
+  {
+    icon: <FaLocationDot />,
+    label: "Our Location",
+    value: "Agrabad, Chittagong, Bangladesh",
+    href: null,
+    accent: "from-blue-500 to-indigo-500",
+  },
+  {
+    icon: <FaPhoneVolume />,
+    label: "Call Us",
+    value: "+880 1234567890",
+    href: "tel:+8801234567890",
+    accent: "from-emerald-500 to-green-600",
+  },
+  {
+    icon: <FaEnvelope />,
+    label: "Email Us",
+    value: "contact@business.com",
+    href: "mailto:contact@business.com",
+    accent: "from-cyan-500 to-sky-600",
+  },
+  {
+    icon: <FaClock />,
+    label: "Working Hours",
+    value: "Open 24/7 — All Branches",
+    href: null,
+    accent: "from-amber-500 to-orange-500",
+  },
+];
+
+const inputClass =
+  "w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100 dark:border-slate-600 dark:bg-slate-900/40 dark:text-white dark:focus:ring-blue-500/20";
 
 const ContactUs = () => {
   const navigate = useNavigate();
-  const handleSendMessage = () => {
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = () => {
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Your Message Send Successfully..",
+      title: "Your message was sent successfully!",
       showConfirmButton: false,
       timer: 1500,
     });
+    reset();
     navigate("/ourServices");
   };
+
   return (
-    <div className="my-10">
-      <section className="py-6 text-black bg-gray-100 dark:bg-[#1c2229] space-y-10 rounded-lg  dark:text-white shadow-lg">
-        <div className="grid  grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
-          <form
-            noValidate=""
-            className="flex flex-col py-6 space-y-4 md:py-0 md:px-6"
-          >
-            <label className="block">
-              <span className="mb-1 font-semibold">Your Full Name</span>
-              <input
-                type="text"
-                placeholder="Enter Your Name"
-                className="block w-full
-                outline-none border px-1 py-2 border-black text-black  rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
-              />
-            </label>
-            <label className="block">
-              <span className="mb-1 font-semibold">Your Email Address</span>
-              <input
-                type="email"
-                placeholder="Enter Your Email"
-                className="block w-full
-                outline-none border px-1 py-2 border-black text-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
-              />
-            </label>
-            <label className="block">
-              <span className="mb-1 font-semibold">Your Mobile Number </span>
-              <input
-                type="number"
-                placeholder="0123456789"
-                className="block w-full
-                outline-none border px-1 py-2 border-black text-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
-              />
-            </label>
-            <label className="block">
-              <span className="mb-1 font-semibold">Your Message</span>
-              <textarea
-                rows="3"
-                placeholder="Type Your Message"
-                className="block w-full
-                outline-none border px-1 py-2 border-black text-black rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-blue-400 focus:dark:ring-blue-600 bg-white dark:bg-gray-100"
-              ></textarea>
-            </label>
-            <button
-              onClick={() => handleSendMessage()}
-              type="button"
-              className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 bg-violet-400 dark:bg-violet-600 text-gray-900 dark:text-gray-50 focus:ring-violet-400 focus:dark:ring-violet-600 hover:ring-violet-400 hover:dark:ring-violet-600"
+    <section className="bg-slate-50 py-16 dark:bg-[#1c2229] lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700 dark:bg-blue-500/10 dark:text-blue-400">
+            <FaHeadset className="text-base" /> Get In Touch
+          </span>
+          <h2 className="mt-4 text-3xl font-extrabold text-slate-800 dark:text-white lg:text-4xl">
+            Contact With Us
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-slate-500 dark:text-slate-400 sm:text-base">
+            Have a question, need a test or want to book an appointment? Our team
+            is here to help you around the clock.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div className="flex flex-col gap-4">
+            {contactInfo.map((item) => {
+              const content = (
+                <div className="group flex items-center gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800">
+                  <span
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-lg text-white shadow-md transition-transform duration-300 group-hover:scale-110 ${item.accent}`}
+                  >
+                    {item.icon}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                      {item.label}
+                    </p>
+                    <p className="mt-0.5 text-sm font-semibold text-slate-800 dark:text-white">
+                      {item.value}
+                    </p>
+                  </div>
+                </div>
+              );
+
+              return item.href ? (
+                <a key={item.label} href={item.href}>
+                  {content}
+                </a>
+              ) : (
+                <div key={item.label}>{content}</div>
+              );
+            })}
+          </div>
+
+          <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-lg shadow-slate-200/50 dark:border-slate-700 dark:bg-slate-800 dark:shadow-black/30 sm:p-8">
+            <h3 className="flex items-center gap-2 text-xl font-bold text-slate-800 dark:text-white">
+              <FaCommentDots className="text-blue-600 dark:text-blue-400" />
+              Send Us a Message
+            </h3>
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+              Fill out the form and we&apos;ll get back to you shortly.
+            </p>
+
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="mt-6 space-y-4"
+              noValidate
             >
-              Send Message
-            </button>
-          </form>
-          <div className="flex justify-center items-center ">
-            <div className="py-6 md:py-0 md:px-6 ">
-              <h1 className=" text-3xl md:text-4xl lg:text-4xl font-semibold text-center uppercase">
-                Contact With Us
-              </h1>
-              <p className="pt-2 pb-4 text-center">
-                Feel Free To Come Physically To Our Diagnostic Center
-              </p>
-              <div className="space-y-4 flex flex-col  items-center md:items-start lg:items-start">
-                <p className="flex items-center gap-3">
-                  <IoLocationSharp />
-                  <span>Chittagong, Bangladesh</span>
-                </p>
-                <p className="flex items-center gap-3">
-                  <MdLocalPhone />
-                  <span>+880 1234567890</span>
-                </p>
-                <p className="flex items-center gap-3 ">
-                  <BiMailSend className=" mt-1 md:mt-2 lg:mt-2" />
-                  <span>contact@business.com</span>
-                </p>
+              <div>
+                <label className="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  {...register("name", { required: true })}
+                  className={inputClass}
+                />
               </div>
-            </div>
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="you@example.com"
+                    {...register("email", { required: true })}
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                    Mobile Number
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="01XXXXXXXXX"
+                    {...register("phone", { required: true })}
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-200">
+                  Your Message
+                </label>
+                <textarea
+                  rows="4"
+                  placeholder="Type your message..."
+                  {...register("message", { required: true })}
+                  className={`${inputClass} resize-none`}
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl dark:shadow-blue-900/30"
+              >
+                <FaPaperPlane /> Send Message
+              </button>
+            </form>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 
