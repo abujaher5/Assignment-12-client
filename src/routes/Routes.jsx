@@ -30,6 +30,8 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import MyAppointment from "../pages/Dashboard/UsersComponents/MyAppointment/MyAppointment";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -60,7 +62,7 @@ export const router = createBrowserRouter([
         path: "/testDetails/:id",
         element: <TestDetails></TestDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/tests/${params.id}`),
+          fetch(`${API_URL}/tests/${params.id}`),
       },
       {
         path: "/contactUs",
@@ -174,25 +176,25 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/tests/${params.id}`),
+          fetch(`${API_URL}/tests/${params.id}`),
       },
       {
         path: "updateDoctorInfo/:id",
         element: <UpdateDoctorsInfo />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/doctors/${params.id}`),
+          fetch(`${API_URL}/doctors/${params.id}`),
       },
       {
         path: "updateBannerInfo/:id",
         element: <UpdateBannersInfo />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/banners/${params.id}`),
+          fetch(`${API_URL}/banners/${params.id}`),
       },
       {
         path: "updateTechnologiesInfo/:id",
         element: <UpdateTechnologiesInfo />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/technologies/${params.id}`),
+          fetch(`${API_URL}/technologies/${params.id}`),
       },
 
       {
