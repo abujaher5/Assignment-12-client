@@ -68,7 +68,7 @@ const DoctorCard = ({ doctor }) => {
         </div>
 
         <Link
-          to="/contactUs"
+          to={`/doctorDetails/${doctor._id}`}
           className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all duration-300 hover:shadow-lg dark:shadow-blue-900/30"
         >
           View Profile <FaArrowRight className="text-xs" />

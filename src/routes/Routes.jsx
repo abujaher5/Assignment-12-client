@@ -29,6 +29,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import MyAppointment from "../pages/Dashboard/UsersComponents/MyAppointment/MyAppointment";
+import DoctorDetails from "../pages/DoctorDetails/DoctorDetails";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -63,6 +64,12 @@ export const router = createBrowserRouter([
         element: <TestDetails></TestDetails>,
         loader: ({ params }) =>
           fetch(`${API_URL}/tests/${params.id}`),
+      },
+      {
+        path: "/doctorDetails/:id",
+        element: <DoctorDetails></DoctorDetails>,
+        loader: ({ params }) =>
+          fetch(`${API_URL}/doctors/${params.id}`),
       },
       {
         path: "/contactUs",
