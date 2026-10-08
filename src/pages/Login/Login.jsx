@@ -28,7 +28,7 @@ const highlights = [
 ];
 
 const inputClass =
-  "w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100 dark:border-slate-600 dark:bg-slate-900/40 dark:text-white dark:focus:ring-blue-500/20";
+  "w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400  focus:ring-2 focus:ring-blue-100 dark:border-slate-600 dark:bg-slate-900/40 dark:text-white dark:focus:ring-blue-500/20";
 
 const labelClass =
   "mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-200";
@@ -44,7 +44,11 @@ const Login = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (data) => {
     setSubmitting(true);
@@ -75,7 +79,8 @@ const Login = () => {
       showCancelButton: true,
       confirmButtonColor: "#2563eb",
       confirmButtonText: "Send reset link",
-      inputValidator: (value) => (!value ? "Please enter your email" : undefined),
+      inputValidator: (value) =>
+        !value ? "Please enter your email" : undefined,
     });
 
     if (!email) return;

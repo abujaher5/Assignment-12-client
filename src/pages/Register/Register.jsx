@@ -33,7 +33,7 @@ const benefits = [
 ];
 
 const inputClass =
-  "w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100 dark:border-slate-600 dark:bg-slate-900/40 dark:text-white dark:focus:ring-blue-500/20";
+  "w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400  focus:ring-2 focus:ring-blue-100 dark:border-slate-600 dark:bg-slate-900/40 dark:text-white dark:focus:ring-blue-500/20";
 
 const labelClass =
   "mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-200";
@@ -65,7 +65,7 @@ const Register = () => {
     const res = await axiosPublic.post(
       `https://api.imgbb.com/1/upload?key=${key}`,
       formData,
-      { headers: { "content-type": "multipart/form-data" } }
+      { headers: { "content-type": "multipart/form-data" } },
     );
     return res.data?.data?.display_url || null;
   };
@@ -74,7 +74,7 @@ const Register = () => {
     setSubmitting(true);
     try {
       let image = `https://ui-avatars.com/api/?name=${encodeURIComponent(
-        data.name
+        data.name,
       )}&background=2563eb&color=fff&bold=true`;
 
       const file = data.image?.[0];
@@ -249,7 +249,7 @@ const Register = () => {
                             <option key={bg} value={bg}>
                               {bg}
                             </option>
-                          )
+                          ),
                         )}
                       </select>
                     </div>
