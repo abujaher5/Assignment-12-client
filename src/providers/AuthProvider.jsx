@@ -61,19 +61,19 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
 
       if (currentUser?.email) {
         const userInfo = { email: currentUser.email };
-        axiosPublic
-          .post("/jwt", userInfo)
-          .then((res) => {
-            if (res.data.token) {
-              localStorage.setItem("access-token", res.data.token);
-            }
-          })
-          .catch((error) => console.log(error));
+        try {
+          const res = await axiosPublic.post("/jwt", userInfo);
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        } catch (error) {
+          console.log(error);
+        }
       } else {
         localStorage.removeItem("access-token");
       }

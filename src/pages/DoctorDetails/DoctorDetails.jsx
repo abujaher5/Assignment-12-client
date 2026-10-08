@@ -52,6 +52,7 @@ const DoctorDetails = () => {
     availableTime,
     image,
     rating,
+    email: doctorEmail,
   } = doctor;
 
   const { register, handleSubmit, reset } = useForm();
@@ -75,6 +76,7 @@ const DoctorDetails = () => {
     const appointment = {
       doctorId: _id,
       doctorName: name,
+      doctorEmail,
       specialize,
       image,
       email: user.email,

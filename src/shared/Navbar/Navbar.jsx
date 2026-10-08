@@ -14,13 +14,13 @@ import {
 import { BiSolidDashboard, BiUserCircle } from "react-icons/bi";
 import { TbReportMedical } from "react-icons/tb";
 import useAuth from "../../hooks/useAuth";
-import useAdmin from "../../hooks/useAdmin";
+import useRole from "../../hooks/useRole";
 import NavItem from "./NavItem";
 import logo from "../../assets/FamousDiagnosticLogo.png";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const [isAdmin] = useAdmin();
+  const [role] = useRole();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -30,7 +30,12 @@ const Navbar = () => {
 
   const closeMobile = () => setIsMobileOpen(false);
 
-  const dashboardPath = isAdmin ? "/dashboard/allUsers" : "/dashboard/userHome";
+  const dashboardPath =
+    role === "Admin"
+      ? "/dashboard/adminHome"
+      : role === "Doctor"
+        ? "/dashboard/doctorHome"
+        : "/dashboard/userHome";
 
   const navItems = [
     { to: "/", label: "Home", icon: <FaHouse /> },

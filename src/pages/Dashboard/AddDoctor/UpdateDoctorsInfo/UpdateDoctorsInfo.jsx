@@ -7,8 +7,16 @@ const image_hosting_key = import.meta.env.VITE_image_hosting_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateDoctorsInfo = () => {
-  const { name, specialize, location, availableOn, availableTime, image, _id } =
-    useLoaderData();
+  const {
+    name,
+    specialize,
+    email,
+    location,
+    availableOn,
+    availableTime,
+    image,
+    _id,
+  } = useLoaderData();
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
@@ -30,6 +38,7 @@ const UpdateDoctorsInfo = () => {
       const updatedItem = {
         name: data.name,
         specialize: data.specialize,
+        email: data.email,
         location: data.location,
         availableOn: data.availableOn,
         availableTime: data.availableTime,
@@ -100,6 +109,26 @@ const UpdateDoctorsInfo = () => {
               w-full "
               />
             </div>
+          </div>
+
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text text-white">
+                Doctor Account Email*
+              </span>
+            </label>
+            <input
+              type="email"
+              defaultValue={email}
+              placeholder="doctor@example.com"
+              {...register("email", { required: true })}
+              className="input input-bordered
+              text-black
+              placeholder-black
+              md:placeholder-black lg:placeholder-black
+              focus:bg-white placeholder-opacity-40
+              w-full "
+            />
           </div>
 
           <div className="lg:flex gap-6">

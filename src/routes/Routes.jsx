@@ -30,6 +30,14 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import MyAppointment from "../pages/Dashboard/UsersComponents/MyAppointment/MyAppointment";
 import DoctorDetails from "../pages/DoctorDetails/DoctorDetails";
+import AdminHome from "../pages/Dashboard/UsersComponents/AdminComponent/AdminHome";
+import DashboardHome from "../pages/Dashboard/DashboardHome";
+import PaymentHistory from "../pages/Dashboard/UsersComponents/PaymentHistory/PaymentHistory";
+import DoctorRoute from "./DoctorRoute/DoctorRoute";
+import DoctorHome from "../pages/Dashboard/DoctorComponents/DoctorHome";
+import DoctorAppointments from "../pages/Dashboard/DoctorComponents/DoctorAppointments";
+import DoctorPatients from "../pages/Dashboard/DoctorComponents/DoctorPatients";
+import DoctorProfile from "../pages/Dashboard/DoctorComponents/DoctorProfile";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -87,6 +95,11 @@ export const router = createBrowserRouter([
     ),
 
     children: [
+      // Redirects to the home page of the current user's role
+      {
+        index: true,
+        element: <DashboardHome />,
+      },
       // General users route
       {
         path: "userHome",
@@ -108,8 +121,54 @@ export const router = createBrowserRouter([
         path: "addReview",
         element: <AddReview />,
       },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory />,
+      },
+
+      // Doctor Only routes
+      {
+        path: "doctorHome",
+        element: (
+          <DoctorRoute>
+            <DoctorHome />
+          </DoctorRoute>
+        ),
+      },
+      {
+        path: "doctorAppointments",
+        element: (
+          <DoctorRoute>
+            <DoctorAppointments />
+          </DoctorRoute>
+        ),
+      },
+      {
+        path: "doctorPatients",
+        element: (
+          <DoctorRoute>
+            <DoctorPatients />
+          </DoctorRoute>
+        ),
+      },
+      {
+        path: "doctorProfile",
+        element: (
+          <DoctorRoute>
+            <DoctorProfile />
+          </DoctorRoute>
+        ),
+      },
 
       // Admin Only routes
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
+        ),
+      },
       {
         path: "allUsers",
         element: (

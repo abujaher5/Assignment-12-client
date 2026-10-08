@@ -27,6 +27,7 @@ const AddDoctor = () => {
       const doctorInfo = {
         name: data.name,
         specialize: data.specialize,
+        email: data.email,
         location: data.location,
         availableOn: data.availableOn,
         availableTime: data.availableTime,
@@ -99,6 +100,25 @@ const AddDoctor = () => {
               w-full "
               />
             </div>
+          </div>
+
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text text-white">
+                Doctor Account Email* (links the doctor login)
+              </span>
+            </label>
+            <input
+              type="email"
+              placeholder="doctor@example.com"
+              {...register("email", { required: true })}
+              className="input input-bordered
+              text-black
+              placeholder-black
+              md:placeholder-black lg:placeholder-black
+              focus:bg-white placeholder-opacity-40
+              w-full "
+            />
           </div>
 
           <div className="lg:flex gap-6">
