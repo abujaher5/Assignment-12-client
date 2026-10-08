@@ -38,6 +38,8 @@ import DoctorHome from "../pages/Dashboard/DoctorComponents/DoctorHome";
 import DoctorAppointments from "../pages/Dashboard/DoctorComponents/DoctorAppointments";
 import DoctorPatients from "../pages/Dashboard/DoctorComponents/DoctorPatients";
 import DoctorProfile from "../pages/Dashboard/DoctorComponents/DoctorProfile";
+import BecomeDoctor from "../pages/Dashboard/UsersComponents/BecomeDoctor/BecomeDoctor";
+import DoctorRequests from "../pages/Dashboard/DoctorRequests/DoctorRequests";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -125,6 +127,10 @@ export const router = createBrowserRouter([
         path: "paymentHistory",
         element: <PaymentHistory />,
       },
+      {
+        path: "becomeDoctor",
+        element: <BecomeDoctor />,
+      },
 
       // Doctor Only routes
       {
@@ -166,6 +172,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AdminHome />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "doctorRequests",
+        element: (
+          <AdminRoute>
+            <DoctorRequests />
           </AdminRoute>
         ),
       },

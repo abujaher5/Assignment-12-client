@@ -5,6 +5,7 @@ import {
   FaUsers,
   FaPlus,
   FaUserDoctor,
+  FaUserPlus,
   FaImages,
   FaImage,
   FaMicroscope,
@@ -67,6 +68,11 @@ const adminSections = [
     items: [
       { to: "/dashboard/adminHome", icon: <FaGauge />, label: "Admin Home" },
       { to: "/dashboard/allUsers", icon: <FaUsers />, label: "All Users" },
+      {
+        to: "/dashboard/doctorRequests",
+        icon: <FaUserDoctor />,
+        label: "Doctor Requests",
+      },
     ],
   },
   {
@@ -129,6 +135,11 @@ const userSections = [
     items: [
       { to: "/dashboard/userProfile", icon: <FaCircleUser />, label: "My Profile" },
       { to: "/dashboard/addReview", icon: <FaPenToSquare />, label: "Add Review" },
+      {
+        to: "/dashboard/becomeDoctor",
+        icon: <FaUserPlus />,
+        label: "Become a Doctor",
+      },
     ],
   },
 ];

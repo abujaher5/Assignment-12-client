@@ -1,4 +1,6 @@
 import { Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Link } from "react-router-dom";
+import { FaUserPlus, FaArrowRight } from "react-icons/fa6";
 import useAuth from "../../../hooks/useAuth";
 import useListing from "../../../hooks/useListing";
 import { useQuery } from "@tanstack/react-query";
@@ -117,6 +119,27 @@ const UserHome = () => {
         <div className="text-black p-10 text-xl font-semibold  bg-red-400 rounded-xl card-body">
           Total Appointment : 2
         </div>
+      </div>
+
+      {/* become a doctor cta */}
+      <div className="flex flex-col items-start justify-between gap-4 rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-500 p-6 text-white shadow-lg shadow-blue-200 dark:shadow-blue-900/30 sm:flex-row sm:items-center">
+        <div className="flex items-center gap-4">
+          <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-xl">
+            <FaUserPlus />
+          </span>
+          <div>
+            <p className="text-lg font-bold">Are you a doctor?</p>
+            <p className="text-sm text-blue-50/90">
+              Request doctor access to manage appointments and patients.
+            </p>
+          </div>
+        </div>
+        <Link
+          to="/dashboard/becomeDoctor"
+          className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-blue-700 shadow-md transition-all duration-300 hover:-translate-y-0.5"
+        >
+          Become a Doctor <FaArrowRight className="text-xs" />
+        </Link>
       </div>
       {/* chart box div */}
       <div>
