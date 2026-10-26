@@ -7,8 +7,13 @@ const useListing = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   // tan stack query
-  const { data: listing = [], refetch } = useQuery({
+  const {
+    data: listing = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["listing", user?.email],
+    enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/myListings?email=${user.email}`);
       const result = res.data;
@@ -16,7 +21,7 @@ const useListing = () => {
     },
   });
 
-  return [listing, refetch];
+  return [listing, refetch, isLoading];
 };
 
 export default useListing;
