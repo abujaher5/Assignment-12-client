@@ -8,6 +8,7 @@ import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
 import AllTests from "../pages/AllTests/AllTests";
 import TestDetails from "../pages/AllTests/TestDetails";
 import OurService from "../pages/OurService/OurService";
+import AboutUs from "../pages/AboutUs/AboutUs";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddTests from "../pages/Dashboard/AddTests/AddTests";
 import ContactUs from "../pages/Home/Contact/ContactUs";
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "/ourServices",
         element: <OurService></OurService>,
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs></AboutUs>,
       },
       {
         path: "/allTests",
