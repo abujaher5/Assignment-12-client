@@ -54,7 +54,7 @@ const actions = [
     accent: "from-green-500 to-emerald-500",
   },
   {
-    to: "/ourServices",
+    to: "/doctors",
     icon: <FaUserDoctor />,
     title: "Find a Doctor",
     subtitle: "Expert specialists",

@@ -85,7 +85,7 @@ const MyAppointment = () => {
               Book an appointment with one of our specialists.
             </p>
             <Link
-              to="/"
+              to="/doctors"
               className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all duration-300 hover:shadow-lg dark:shadow-blue-900/30"
             >
               Find a Doctor <FaArrowRight className="text-xs" />
