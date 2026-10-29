@@ -37,6 +37,9 @@ const Navbar = () => {
         ? "/dashboard/doctorHome"
         : "/dashboard/userHome";
 
+  const profilePath =
+    role === "Doctor" ? "/dashboard/doctorProfile" : "/dashboard/userProfile";
+
   const navItems = [
     { to: "/", label: "Home", icon: <FaHouse /> },
     { to: "/ourServices", label: "Services", icon: <FaUserDoctor /> },
@@ -152,7 +155,7 @@ const Navbar = () => {
                       <BiSolidDashboard className="text-lg" /> Dashboard
                     </Link>
                     <Link
-                      to="/dashboard/userProfile"
+                      to={profilePath}
                       onClick={() => setIsUserMenuOpen(false)}
                       className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 dark:text-slate-200 dark:hover:bg-slate-700"
                     >

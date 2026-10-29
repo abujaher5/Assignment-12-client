@@ -8,15 +8,12 @@ import {
   FaCalendarDays,
   FaCircleCheck,
   FaCircleUser,
-  FaClock,
   FaDroplet,
   FaEnvelope,
   FaFloppyDisk,
   FaIdCard,
   FaImage,
-  FaLocationDot,
   FaMapLocationDot,
-  FaPenToSquare,
   FaStethoscope,
   FaUserClock,
   FaUserDoctor,
@@ -82,15 +79,6 @@ const UserProfile = () => {
         if (error.response?.status === 404) return null;
         throw error;
       }
-    },
-  });
-
-  const { data: doctorProfile } = useQuery({
-    queryKey: ["doctorProfile", user?.email],
-    enabled: role === "Doctor" && !!user?.email,
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/doctors/email/${user.email}`);
-      return res.data || null;
     },
   });
 
@@ -359,75 +347,6 @@ const UserProfile = () => {
               </Link>
             ))}
           </div>
-        </div>
-      )}
-
-      {role === "Doctor" && (
-        <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-lg shadow-slate-200/50 dark:border-slate-700 dark:bg-slate-800 dark:shadow-black/30">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <h3 className="text-base font-bold text-slate-800 dark:text-white">
-              Professional Information
-            </h3>
-            <Link
-              to="/dashboard/doctorProfile"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-blue-200 transition hover:-translate-y-0.5 dark:shadow-blue-900/30"
-            >
-              <FaPenToSquare /> Edit Professional Profile
-            </Link>
-          </div>
-
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-900/40">
-              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
-                <FaStethoscope className="text-blue-500" /> Specialization
-              </p>
-              <p className="mt-1 text-sm font-bold text-slate-800 dark:text-white">
-                {doctorProfile?.specialize || "Not set"}
-              </p>
-            </div>
-            <div className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-900/40">
-              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
-                <FaLocationDot className="text-blue-500" /> Chamber
-              </p>
-              <p className="mt-1 text-sm font-bold text-slate-800 dark:text-white">
-                {doctorProfile?.location || "Not set"}
-              </p>
-            </div>
-            <div className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-900/40">
-              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
-                <FaCalendarDays className="text-blue-500" /> Available On
-              </p>
-              <p className="mt-1 text-sm font-bold text-slate-800 dark:text-white">
-                {doctorProfile?.availableOn || "Not set"}
-              </p>
-            </div>
-            <div className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-900/40">
-              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
-                <FaClock className="text-blue-500" /> Available Time
-              </p>
-              <p className="mt-1 text-sm font-bold text-slate-800 dark:text-white">
-                {doctorProfile?.availableTime || "Not set"}
-              </p>
-            </div>
-          </div>
-
-          {doctorProfile?.about && (
-            <div className="mt-4 rounded-2xl bg-slate-50 p-4 dark:bg-slate-900/40">
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                About
-              </p>
-              <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                {doctorProfile.about}
-              </p>
-            </div>
-          )}
-
-          {!doctorProfile && (
-            <p className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300">
-              Your professional profile is not set up yet. Use the button above
-              to add your specialization, chamber and schedule.
-            </p>
-          )}
         </div>
       )}
 
