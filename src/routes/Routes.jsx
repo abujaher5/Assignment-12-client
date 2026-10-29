@@ -42,6 +42,7 @@ import DoctorPatients from "../pages/Dashboard/DoctorComponents/DoctorPatients";
 import DoctorProfile from "../pages/Dashboard/DoctorComponents/DoctorProfile";
 import BecomeDoctor from "../pages/Dashboard/UsersComponents/BecomeDoctor/BecomeDoctor";
 import DoctorRequests from "../pages/Dashboard/DoctorRequests/DoctorRequests";
+import UserRoute from "./UserRoute/UserRoute";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -123,7 +124,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "userProfile",
-        element: <UserProfile></UserProfile>,
+        element: (
+          <UserRoute>
+            <UserProfile></UserProfile>
+          </UserRoute>
+        ),
       },
       {
         path: "myListings",
